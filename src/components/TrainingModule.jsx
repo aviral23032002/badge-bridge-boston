@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { 
   Shield, ChevronRight, RotateCcw, AlertTriangle, 
-  CheckCircle2, HelpCircle, Send, X, Loader2, Bot
+  CheckCircle2, HelpCircle, Send, X, Loader2, Scale 
 } from 'lucide-react';
 
 const TrainingModule = ({ 
@@ -51,18 +51,18 @@ const TrainingModule = ({
     setInputValue('');
     setIsLoading(true);
 
-    const formattedContext = [
-      `[Scenario Context]: ${currentPhase.title} - ${currentPhase.description}`,
-      currentSelectedChoice ? `[User's Incorrect Choice]: ${currentSelectedChoice.text}` : ''
-    ].filter(Boolean);
+    const refinedPrompt = `
+      [Scenario Context]: ${currentPhase.description}
+      [User's Incorrect Choice]: "${currentSelectedChoice?.text}".
+    `;
 
     try {
       const response = await fetch('http://localhost:5000/api/ask-saul', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          question: currentQuestion,           
-          previous_options: formattedContext, 
+          question: currentQuestion,
+          previous_options: refinedPrompt,  
           chat_history: messages, 
         }),
       });
@@ -86,7 +86,7 @@ const TrainingModule = ({
 
   return (
     <>
-      <div className={`phase-container transition-all duration-300 ${showFeedback || isChatOpen ? 'blur-bg' : ''}`}>
+      <div className={`phase-container transition-all duration-300 ${showFeedback || isChatOpen ? 'blur-md brightness-50' : ''}`}>
         <div className="visual-indicator">
           {currentPhase.choices.length === 0 ? 
             <Shield size={100} className="glow-icon win-icon" /> : 
@@ -120,12 +120,13 @@ const TrainingModule = ({
       {showFeedback && !isChatOpen && (
         <div className="feedback-overlay" style={{ zIndex: 100 }}>
           <div className={`feedback-modal ${feedback.isError ? 'modal-fail' : 'modal-pass'} flex flex-col relative`}>
-            {/* HELP ICON MOVED TO TOP RIGHT CORNER OF BOX */}
+            
+            {/* Help icon fixed to top right */}
             {feedback.isError && (
               <button 
                 onClick={() => setIsChatOpen(true)}
-                className="cyber-chat-trigger"
-                title="ACCESS TERMINAL LOGS"
+                className="legal-chat-trigger"
+                title="Consult Legal Assistant"
               >
                 <HelpCircle size={20} />
               </button>
@@ -152,44 +153,39 @@ const TrainingModule = ({
         </div>
       )}
 
-      {/* CHAT BOT BOX - Centered like the error box */}
+      {/* NEW 'DECENT & PLAIN' LEGAL CHAT BOT */}
       {isChatOpen && (
         <div className="feedback-overlay" style={{ zIndex: 100 }}>
           <div className="absolute inset-0" onClick={() => setIsChatOpen(false)} />
 
-          <div className="cyber-chat-panel flex flex-col relative z-10 w-full max-w-[650px] h-[600px] max-h-[80vh]">
-            <div className="scanline"></div> 
+          <div className="legal-chat-panel">
+            
+            <div className="legal-header">
+              <div className="legal-header-info">
+                <div className="legal-icon-wrapper">
+                  <Scale size={24} />
+                </div>
+                <div className="legal-header-text">
+                  <h3 className="legal-title">Legal Assistant</h3>
+                  <p className="legal-subtitle">BPD Guidelines & Law</p>
+                </div>
+              </div>
+              <button onClick={() => setIsChatOpen(false)} className="legal-close-btn">
+                <X size={24} />
+              </button>
+            </div>
 
-                      <div className="cyber-header">
-                          {/* Left: Small Logo */}
-                          <div className="bot-icon-wrapper" style={{ padding: '6px' }}>
-                              <Bot size={18} />
-                          </div>
-
-                          {/* Center: Title and Status */}
-                          <div className="header-text-center">
-                              <h3 className="cyber-title" style={{ fontSize: '0.9rem' }}>LEGAL_MAINFRAME // SYS.AI</h3>
-                              <p className="cyber-subtitle" style={{ fontSize: '0.65rem' }}>STATUS: ONLINE | PORT: 5000</p>
-                          </div>
-
-                          {/* Right: Close Button (Acts as the third piece to balance the center) */}
-                          <button onClick={() => setIsChatOpen(false)} className="cyber-close-btn">
-                              <X size={20} />
-                          </button>
-                      </div>
-
-            {/* Scrollable Area */}
-            <div className="cyber-chat-body cyber-scroll flex-1 overflow-y-auto">
+            <div className="legal-chat-body">
               {messages.length === 0 ? (
-                <div className="empty-chat-state">
-                  <Bot size={50} className="mb-4 opacity-50" />
-                  <p>AWAITING QUERY...</p>
-                  <span>REQUEST PROCEDURAL CLARIFICATION</span>
+                <div className="legal-empty-state">
+                  <Scale size={48} className="legal-empty-icon" />
+                  <p>Awaiting Inquiry...</p>
+                  <span>Request procedural clarification below.</span>
                 </div>
               ) : (
                 messages.map((msg, idx) => (
-                  <div key={idx} className={`cyber-message-wrapper ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                    <div className={`cyber-message ${msg.role === 'user' ? 'msg-user' : 'msg-bot'}`}>
+                  <div key={idx} className={`legal-message-row ${msg.role === 'user' ? 'row-user' : 'row-bot'}`}>
+                    <div className={`legal-bubble ${msg.role === 'user' ? 'bubble-user' : 'bubble-bot'}`}>
                       {msg.content}
                     </div>
                   </div>
@@ -197,41 +193,39 @@ const TrainingModule = ({
               )}
               
               {isLoading && (
-                <div className="cyber-message-wrapper justify-start">
-                  <div className="cyber-message msg-bot flex items-center gap-3">
-                    <Loader2 size={16} className="animate-spin text-[var(--neon-blue)]" />
-                    <span>FETCHING BPD RECORDS...</span>
+                <div className="legal-message-row row-bot">
+                  <div className="legal-bubble bubble-bot loading-bubble">
+                    <Loader2 size={16} className="spinner" />
+                    <span>Consulting legal records...</span>
                   </div>
                 </div>
               )}
               <div ref={messagesEndRef} />
             </div>
 
-            <div className="cyber-input-area">
-              <div className="relative flex items-end gap-2 w-full">
-                <span className="cyber-prompt-symbol">{'>'}</span>
-                <textarea 
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' && !e.shiftKey) {
-                      e.preventDefault();
-                      handleSendMessage();
-                    }
-                  }}
-                  placeholder="ENTER COMMAND..."
-                  className="cyber-textarea"
-                  rows={1}
-                />
-                <button 
-                  onClick={handleSendMessage}
-                  disabled={isLoading || !inputValue.trim()}
-                  className="cyber-send-btn"
-                >
-                  <Send size={18} />
-                </button>
-              </div>
+            <div className="legal-input-area">
+              <textarea 
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    handleSendMessage();
+                  }
+                }}
+                placeholder="Draft your question..."
+                className="legal-textarea"
+                rows={1}
+              />
+              <button 
+                onClick={handleSendMessage}
+                disabled={isLoading || !inputValue.trim()}
+                className="legal-send-btn"
+              >
+                <Send size={18} />
+              </button>
             </div>
+
           </div>
         </div>
       )}

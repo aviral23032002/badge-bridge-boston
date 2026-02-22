@@ -32,7 +32,7 @@ def ask_saul_chat():
     previous_options = data.get('previous_options', [])
     chat_history = data.get('chat_history', [])
         
-    context_str = ", ".join(previous_options) if previous_options else "None"
+    context_str = (previous_options) if previous_options else "None"
     
     # 1. Combine system instructions directly into the first user prompt
     print("The context is "+ context_str)
