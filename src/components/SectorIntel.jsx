@@ -1,30 +1,17 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Info, Activity, AlertCircle, Compass, ChevronRight, ChevronLeft } from 'lucide-react';
+import { ArrowLeft, Info, Activity, AlertCircle, Compass, ChevronRight, CheckCircle2 } from 'lucide-react';
 
 const SectorIntel = ({ activeScenario, changeScreen, startTraining }) => {
-  // State to track which module the user is currently looking at
+  // State to track which module the user has selected
   const [selectedModuleIndex, setSelectedModuleIndex] = useState(0);
 
   if (!activeScenario) return null;
 
-  // Get the currently selected module based on the index
   const currentModule = activeScenario.availableModules[selectedModuleIndex];
-
-  // Functions to handle clicking the arrows
-  const handlePrev = () => {
-    setSelectedModuleIndex((prev) => 
-      prev === 0 ? activeScenario.availableModules.length - 1 : prev - 1
-    );
-  };
-
-  const handleNext = () => {
-    setSelectedModuleIndex((prev) => 
-      prev === activeScenario.availableModules.length - 1 ? 0 : prev + 1
-    );
-  };
 
   return (
     <div className="view-container w-full max-w-5xl intel-wrapper">
+      {/* Header Area */}
       <div className="intel-header">
         <button className="back-btn" onClick={() => changeScreen('BOSTON_MAP')}>
           <ArrowLeft size={18} className="mr-2"/> Back to Map
@@ -42,6 +29,7 @@ const SectorIntel = ({ activeScenario, changeScreen, startTraining }) => {
         This data is sourced publicly from the BPD Open Data Portal and MA POST Commission to provide real-world context before your training.
       </p>
 
+      {/* Intel Cards */}
       <div className="intel-grid">
         <div className="intel-card border-blue">
           <div className="intel-card-head"><Activity size={20}/> <h3>FIELD STOPS (FIO)</h3></div>
@@ -77,32 +65,40 @@ const SectorIntel = ({ activeScenario, changeScreen, startTraining }) => {
         </div>
       </div>
 
-      <div className="intel-footer">
-        <div className="mission-brief">
-          <div className="module-selector-header">
-            {/* Only show left arrow if there is more than 1 module */}
-            {activeScenario.availableModules.length > 1 && (
-              <button className="module-arrow-btn" onClick={handlePrev}>
-                <ChevronLeft size={24} />
-              </button>
-            )}
-            
-            <h3>MODULE: {currentModule.title}</h3>
-            
-            {/* Only show right arrow if there is more than 1 module */}
-            {activeScenario.availableModules.length > 1 && (
-              <button className="module-arrow-btn" onClick={handleNext}>
-                <ChevronRight size={24} />
-              </button>
-            )}
-          </div>
-          <p>{currentModule.description || "Learn how to safely and legally navigate this type of encounter."}</p>
-        </div>
+      {/* Module Selection Area */}
+      <div className="module-selection-area">
+        <h3 className="module-selection-title">SELECT TRAINING MODULE:</h3>
         
-        {/* Pass the currently selected module to startTraining */}
-        <button className="btn-launch" onClick={() => startTraining(currentModule)}>
-          START MODULE <ChevronRight size={20} className="ml-2"/>
-        </button>
+        {/* The Tiles */}
+        <div className="module-tiles-grid">
+          {activeScenario.availableModules.map((module, index) => {
+            const isActive = selectedModuleIndex === index;
+            return (
+              <button 
+                key={module.id || index}
+                className={`module-tile ${isActive ? 'active' : ''}`}
+                onClick={() => setSelectedModuleIndex(index)}
+              >
+                <div className="module-tile-content">
+                  <span className="module-tile-title">{module.title}</span>
+                  {isActive && <CheckCircle2 size={18} className="active-icon" />}
+                </div>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Selected Module Info & Launch Button */}
+        <div className="module-launch-bar">
+          <p className="module-description">
+            <span style={{ color: 'var(--neon-blue)', fontWeight: 'bold', marginRight: '8px' }}>MISSION:</span>
+            {currentModule?.description || "Learn how to safely and legally navigate this type of encounter."}
+          </p>
+          
+          <button className="btn-launch" onClick={() => startTraining(currentModule)}>
+            START MODULE <ChevronRight size={20} className="ml-2"/>
+          </button>
+        </div>
       </div>
     </div>
   );

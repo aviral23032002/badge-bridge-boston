@@ -583,3 +583,137 @@
   overflow-y: auto; /* Only this part scrolls */
   scroll-behavior: smooth;
 }
+
+/* =========================================
+   MODULE SELECTION TILES (CYBER THEME)
+   ========================================= */
+
+.module-selection-area {
+  background: var(--bg-panel); /* FIXED: Matches the other boxes */
+  border: 1px solid var(--border-main);
+  border-radius: 6px;
+  padding: 25px;
+  margin-top: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05); /* Match other cards' shadow */
+}
+
+.module-selection-title {
+  color: var(--neon-blue);
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+/* Grid for the tiles */
+.module-tiles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+/* Individual Tile Styling */
+.module-tile {
+  background: var(--bg-main);
+  border: 1px solid var(--border-main);
+  padding: 18px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.module-tile-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.module-tile-title {
+  color: var(--text-subtle);
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 0.95rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+
+.active-icon {
+  color: var(--neon-blue);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Tile Hover State */
+.module-tile:hover {
+  border-color: var(--neon-blue);
+  background: rgba(0, 242, 255, 0.05);
+  transform: translateY(-2px);
+}
+
+.light-mode .module-tile:hover {
+  background: rgba(0, 102, 204, 0.05);
+}
+
+.module-tile:hover .module-tile-title {
+  color: var(--text-main);
+}
+
+/* Tile Active State (When Selected) */
+.module-tile.active {
+  background: rgba(0, 242, 255, 0.1);
+  border: 1px solid var(--neon-blue);
+  border-left: 4px solid var(--neon-blue);
+  box-shadow: 0 0 15px rgba(0, 242, 255, 0.15);
+  transform: translateY(0);
+}
+
+.light-mode .module-tile.active {
+  background: rgba(0, 102, 204, 0.1);
+  box-shadow: 0 0 15px rgba(0, 102, 204, 0.15);
+}
+
+.module-tile.active .module-tile-title {
+  color: var(--neon-blue);
+  text-shadow: none; /* Better legibility in light mode */
+}
+
+.app-container:not(.light-mode) .module-tile.active .module-tile-title {
+  text-shadow: 0 0 8px rgba(0, 242, 255, 0.4); /* Restore glow for dark mode */
+}
+
+/* Launch Bar (Description + Button) */
+.module-launch-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
+  border-top: 1px dashed var(--border-main);
+  gap: 20px;
+}
+
+.module-description {
+  color: var(--text-main);
+  font-size: 1rem;
+  line-height: 1.5;
+  flex: 1;
+}
+
+/* Ensure mobile layout stacks the button properly */
+@media (max-width: 768px) {
+  .module-launch-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .module-launch-bar .btn-launch {
+    width: 100%;
+    justify-content: center;
+  }
+}
