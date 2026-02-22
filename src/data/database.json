@@ -138,66 +138,100 @@
       }
     }
   },
+  
   "scenarios": {
     "beacon_hill": {
       "id": "beacon_hill",
       "location": "Beacon Hill",
+      "lat": 42.3588,
+      "lng": -71.0707,
       "neighborhoodData": {
-        "interactionRate": "AVERAGE",
-        "fioData": { "stops": 410, "friskRate": "12%", "basis": "Encounter / Suspicion" },
-        "misconductData": { "sustained": 12, "topViolation": "Respectful Treatment", "actionRate": "Moderate" },
-        "communityContext": { "focus": "Property / Drugs", "peakTime": "8:00 PM - 12:00 AM" },
-        "topArrests": "Drugs (65), Assault 209A (56), Trespassing (55)" 
+        "interactionRate": "LOW",
+        "total_arrests": 1071,
+        "juvenile_arrests": 29,
+        "concerning_crimes": 563,
+        "juvenile_percent": 2.71,
+        "concerning_crime_percent": 52.57
       },
-      "availableModuleIds": ["sidewalk_stop", "disorderly_conduct"]
+      "availableModuleIds": [
+        "sidewalk_stop",
+        "disorderly_conduct"
+      ]
     },
     "dorchester": {
       "id": "dorchester",
       "location": "Dorchester",
+      "lat": 42.3016,
+      "lng": -71.0676,
       "neighborhoodData": {
         "interactionRate": "HIGH",
-        "fioData": { "stops": 3200, "friskRate": "35%", "basis": "Traffic / Suspicion" },
-        "misconductData": { "sustained": 85, "topViolation": "Use of Force", "actionRate": "Low" },
-        "communityContext": { "focus": "Violent Crime / Weapons", "peakTime": "10:00 PM - 2:00 AM" },
-        "topArrests": "Assault 209A (1761), Firearms (980), Assault w/ Weapon (525)" 
+        "total_arrests": 15129,
+        "juvenile_arrests": 1357,
+        "concerning_crimes": 7342,
+        "juvenile_percent": 8.97,
+        "concerning_crime_percent": 48.53
       },
-      "availableModuleIds": ["sidewalk_stop", "firearm_stop", "possession_class_a", "assault_battery"]
+      "availableModuleIds": [
+        "sidewalk_stop",
+        "firearm_stop",
+        "possession_class_a",
+        "assault_battery"
+      ]
     },
     "hyde_park": {
       "id": "hyde_park",
       "location": "Hyde Park",
+      "lat": 42.2565,
+      "lng": -71.1243,
       "neighborhoodData": {
-        "interactionRate": "MODERATE",
-        "fioData": { "stops": 850, "friskRate": "20%", "basis": "Suspicion / Encounter" },
-        "misconductData": { "sustained": 28, "topViolation": "Biased Policing", "actionRate": "Moderate" },
-        "communityContext": { "focus": "Domestic / Weapons", "peakTime": "6:00 PM - 1:00 AM" },
-        "topArrests": "Assault 209A (316), Firearms (69), Assault w/ Weapon (48)" 
+        "interactionRate": "MEDIUM",
+        "total_arrests": 1850,
+        "juvenile_arrests": 152,
+        "concerning_crimes": 919,
+        "juvenile_percent": 8.22,
+        "concerning_crime_percent": 49.68
       },
-      "availableModuleIds": ["firearm_stop", "assault_battery"]
+      "availableModuleIds": [
+        "firearm_stop",
+        "assault_battery"
+      ]
     },
     "roslindale": {
       "id": "roslindale",
       "location": "Roslindale",
+      "lat": 42.2832,
+      "lng": -71.1270,
       "neighborhoodData": {
-        "interactionRate": "MODERATE",
-        "fioData": { "stops": 620, "friskRate": "18%", "basis": "Traffic / Encounter" },
-        "misconductData": { "sustained": 15, "topViolation": "Neglect of Duty", "actionRate": "High" },
-        "communityContext": { "focus": "Assault / Firearms", "peakTime": "7:00 PM - Midnight" },
-        "topArrests": "Assault 209A (188), Firearms (52), Assault w/ Weapon (34)" 
+        "interactionRate": "LOW",
+        "total_arrests": 1133,
+        "juvenile_arrests": 118,
+        "concerning_crimes": 593,
+        "juvenile_percent": 10.41,
+        "concerning_crime_percent": 52.34
       },
-      "availableModuleIds": ["sidewalk_stop", "disorderly_conduct"]
+      "availableModuleIds": [
+        "sidewalk_stop",
+        "disorderly_conduct"
+      ]
     },
     "west_roxbury": {
       "id": "west_roxbury",
       "location": "West Roxbury",
+      "lat": 42.2798,
+      "lng": -71.1627,
       "neighborhoodData": {
         "interactionRate": "LOW",
-        "fioData": { "stops": 300, "friskRate": "8%", "basis": "Traffic Violation" },
-        "misconductData": { "sustained": 9, "topViolation": "Respectful Treatment", "actionRate": "High" },
-        "communityContext": { "focus": "Domestic / Property", "peakTime": "4:00 PM - 10:00 PM" },
-        "topArrests": "Assault 209A (172), Assault w/ Weapon (31), Firearms (28)" 
+        "total_arrests": 894,
+        "juvenile_arrests": 52,
+        "concerning_crimes": 432,
+        "juvenile_percent": 5.82,
+        "concerning_crime_percent": 48.32
       },
-      "availableModuleIds": ["sidewalk_stop", "possession_class_a"]
+      "availableModuleIds": [
+        "sidewalk_stop",
+        "possession_class_a"
+      ]
     }
   }
+
 }
