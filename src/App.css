@@ -979,3 +979,103 @@
   background-color: var(--border-main);
   border-radius: 10px;
 }
+
+/* =========================================
+   FINAL REPORT CARD UI
+   ========================================= */
+
+.legal-report-card {
+  background: var(--bg-modal);
+  border: 1px solid var(--border-main);
+  border-radius: 8px;
+  padding: 35px 40px;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 800px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+  font-family: 'Georgia', 'Times New Roman', serif;
+  animation: slideUpModal 0.5s ease-out forwards;
+  
+  /* NEW: Flexbox constraints to enable inner scrolling */
+  display: flex;
+  flex-direction: column;
+  max-height: 85vh; /* Prevents the card from exceeding the screen height */
+}
+
+/* Prevent header, score, and button from squishing */
+.report-header, .report-score-bar, .legal-report-card .reset-btn {
+  flex-shrink: 0; 
+}
+
+.report-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 15px;
+  margin-bottom: 25px;
+}
+
+.report-header h2 {
+  color: var(--text-main);
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.report-score-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-panel);
+  padding: 20px 25px;
+  border-radius: 6px;
+  border: 1px solid var(--border-main);
+  margin-bottom: 25px;
+}
+
+.report-score-title {
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  font-family: 'JetBrains Mono', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.report-score-value {
+  color: #c9a25b; /* Gold/Amber */
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.report-body {
+  color: var(--text-main);
+  line-height: 1.8;
+  font-size: 1.15rem;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 25px;
+  border-radius: 6px;
+  border-left: 4px solid #c9a25b;
+  
+  /* NEW: Scroll logic */
+  overflow-y: auto;
+  flex: 1; /* Takes up remaining available space inside the card */
+  min-height: 150px;
+}
+
+.light-mode .report-body {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+/* Custom Scrollbar strictly for the report body */
+.report-body::-webkit-scrollbar { width: 6px; }
+.report-body::-webkit-scrollbar-track { background: transparent; }
+.report-body::-webkit-scrollbar-thumb {
+  background-color: var(--border-main);
+  border-radius: 10px;
+}
+.report-body::-webkit-scrollbar-thumb:hover {
+  background-color: #c9a25b; /* Turns gold on hover to match */
+}

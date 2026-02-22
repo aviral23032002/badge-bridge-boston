@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { 
   Shield, ChevronRight, RotateCcw, AlertTriangle, 
-  CheckCircle2, HelpCircle, Send, X, Loader2, Scale 
+  CheckCircle2, HelpCircle, Send, X, Loader2, Scale, FileText
 } from 'lucide-react';
 
 const TrainingModule = ({ 
@@ -14,6 +14,12 @@ const TrainingModule = ({
   const [isLoading, setIsLoading] = useState(false);
   
   const [currentSelectedChoice, setCurrentSelectedChoice] = useState(null);
+
+  // --- NEW: Scoring & Report State ---
+  const [userHistory, setUserHistory] = useState([]);
+  const [scoredPhases, setScoredPhases] = useState(new Set());
+  const [finalReport, setFinalReport] = useState(null);
+  const [isGeneratingReport, setIsGeneratingReport] = useState(false);
   
   const messagesEndRef = useRef(null);
 
@@ -29,10 +35,68 @@ const TrainingModule = ({
 
   if (!activeScenario) return null;
   const currentPhase = activeScenario.phases[currentPhaseId];
+  
+  // Check if we are at the end of the module
+  const isFinalPhase = currentPhase.choices.length === 0;
 
+  // --- NEW: Intercept Choice for Scoring ---
   const onChoiceClick = (choice) => {
     setCurrentSelectedChoice(choice);
+    
+    // Only record the score on the FIRST attempt of this phase
+    if (!scoredPhases.has(currentPhaseId)) {
+      const newHistory = [...userHistory, {
+        phaseTitle: currentPhase.title,
+        chosenText: choice.text,
+        score: choice.score || 0
+      }];
+      setUserHistory(newHistory);
+      setScoredPhases(new Set(scoredPhases).add(currentPhaseId));
+    }
+    
     handleChoice(choice);
+  };
+
+  // --- NEW: Generate Report at the End ---
+  useEffect(() => {
+    if (isFinalPhase && userHistory.length > 0 && !finalReport && !isGeneratingReport) {
+      generatePerformanceReport();
+    }
+  }, [currentPhaseId]);
+
+  const generatePerformanceReport = async () => {
+    setIsGeneratingReport(true);
+    
+    const totalScore = userHistory.reduce((sum, item) => sum + item.score, 0);
+    const maxScore = userHistory.length * 4;
+
+    const reportPrompt = `
+      You are an expert Legal Evaluator. The user just completed the training module: "${activeScenario.title}".
+      Here is the log of their first-attempt choices:
+      ${userHistory.map((h, i) => `Step ${i+1}: ${h.phaseTitle} | Action: ${h.chosenText} | Score Earned: ${h.score}/4`).join('\n')}
+      
+      Total Score: ${totalScore} out of ${maxScore}.
+      
+      Write a concise, professional legal performance debrief (2 paragraphs). Analyze their decision-making, highlight critical mistakes or excellent legal maneuvering, and provide a final verdict on how well they protected their rights. Speak directly to the user. Do not use markdown formatting.
+    `;
+
+    try {
+      const response = await fetch('http://localhost:5000/api/generate-report', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          question: reportPrompt,           
+          chat_history: [], 
+        }),
+      });
+      const data = await response.json();
+      setFinalReport(data.reply);
+    } catch (error) {
+      console.error("Error generating report:", error);
+      setFinalReport("Connection Error: Unable to reach Saul-LM to compile your performance debrief. Please check your terminal connection.");
+    } finally {
+      setIsGeneratingReport(false);
+    }
   };
 
   const handleAcknowledge = () => {
@@ -84,36 +148,66 @@ const TrainingModule = ({
     }
   };
 
+  // Calculate final numbers for the UI
+  const totalScore = userHistory.reduce((sum, item) => sum + item.score, 0);
+  const maxScore = userHistory.length * 4;
+
   return (
     <>
       <div className={`phase-container transition-all duration-300 ${showFeedback || isChatOpen ? 'blur-md brightness-50' : ''}`}>
-        <div className="visual-indicator">
-          {currentPhase.choices.length === 0 ? 
-            <Shield size={100} className="glow-icon win-icon" /> : 
-            <Shield size={100} className="glow-icon" />
-          }
-        </div>
         
-        <div className="text-section">
-          <h1 className="title">{currentPhase.title}</h1>
-          <p className="description">{currentPhase.description}</p>
-        </div>
+        {/* NORMAL PHASE UI */}
+        {!isFinalPhase ? (
+          <>
+            <div className="visual-indicator">
+              <Shield size={100} className="glow-icon" />
+            </div>
+            
+            <div className="text-section">
+              <h1 className="title">{currentPhase.title}</h1>
+              <p className="description">{currentPhase.description}</p>
+            </div>
 
-        <div className="options-grid">
-          {currentPhase.choices.map((choice, index) => (
-            <button key={index} className="choice-card" onClick={() => onChoiceClick(choice)}>
-              <div className="choice-edge"></div>
-              <span className="choice-index">0{index + 1}</span>
-              <span className="choice-text">{choice.text}</span>
-              <ChevronRight className="arrow" size={20} />
-            </button>
-          ))}
-          {currentPhase.choices.length === 0 && (
-            <button className="reset-btn mt-6" onClick={() => changeScreen('BOSTON_MAP')}>
+            <div className="options-grid">
+              {currentPhase.choices.map((choice, index) => (
+                <button key={index} className="choice-card" onClick={() => onChoiceClick(choice)}>
+                  <div className="choice-edge"></div>
+                  <span className="choice-index">0{index + 1}</span>
+                  <span className="choice-text">{choice.text}</span>
+                  <ChevronRight className="arrow" size={20} />
+                </button>
+              ))}
+            </div>
+          </>
+        ) : (
+          /* FINAL REPORT CARD UI */
+          <div className="legal-report-card">
+            <div className="report-header">
+              <FileText size={32} color="#c9a25b" />
+              <h2>Performance Debrief</h2>
+            </div>
+            
+            <div className="report-score-bar">
+              <span className="report-score-title">Final Assessment Score</span>
+              <span className="report-score-value">{totalScore} / {maxScore}</span>
+            </div>
+
+            <div className="report-body">
+              {isGeneratingReport ? (
+                <div className="loading-bubble" style={{ justifyContent: 'center', margin: '40px 0' }}>
+                  <Loader2 size={24} className="spinner" />
+                  <span>Saul-LM is analyzing your legal maneuvers...</span>
+                </div>
+              ) : (
+                <p style={{ whiteSpace: 'pre-line' }}>{finalReport}</p>
+              )}
+            </div>
+
+            <button className="reset-btn mt-6" style={{ width: '100%', marginTop: '30px' }} onClick={() => changeScreen('BOSTON_MAP')}>
               <RotateCcw size={18} className="mr-2"/> RETURN TO MAP
             </button>
-          )}
-        </div>
+          </div>
+        )}
       </div>
 
       {/* PROCEDURAL ERROR BOX */}
