@@ -4884,8 +4884,10 @@
         "concerning_crime_percent": 52.57
       },
       "availableModuleIds": [
-        "possession_class_a",
-        "assault_battery"
+       "operating_under_the_influence",
+"possession_class_a",
+"assault_battery",
+"possession_wi_distribute_class_b"
 
       ]
     },
@@ -4903,8 +4905,10 @@
         "concerning_crime_percent": 48.53
       },
       "availableModuleIds": [
-        "possession_class_a",
-        "assault_battery"
+       "assault_dangerous_weapon",
+"receiving_stolen_goods",
+"graffiti_tagging",
+"person_disorderly"
       ]
     },
     "hyde_park": {
@@ -4921,8 +4925,10 @@
         "concerning_crime_percent": 49.68
       },
       "availableModuleIds": [
-        "possession_class_a",
-        "assault_battery"
+       "violation_restraining_order",
+"distribution_class_b",
+"fugitive_from_justice",
+"larceny"
       ]
     },
     "roslindale": {
@@ -4939,8 +4945,10 @@
         "concerning_crime_percent": 52.34
       },
       "availableModuleIds": [
-        "possession_class_a",
-        "assault_battery"
+         "shoplifting_50_to_200",
+"shoplifting_200_over",
+"unlawful_possession_ammunition",
+"unlawful_possession_firearm"
       ]
     },
     "west_roxbury": {
@@ -4957,8 +4965,10 @@
         "concerning_crime_percent": 48.32
       },
       "availableModuleIds": [
-        "person_disorderly",
-        "assault_battery"
+ "assault_battery_injuries",
+"assault_battery_police_officer",
+"disorderly_conduct_other",
+"operating_after_revocation"
       ]
     }
   }
