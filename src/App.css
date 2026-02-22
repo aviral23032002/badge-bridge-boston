@@ -275,3 +275,311 @@
   color: var(--neon-blue);
   transform: scale(1.2);
 }
+
+/* --- CUSTOM HEATMAP LEGEND --- */
+.map-legend {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: var(--bg-panel);
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border-main);
+  z-index: 1000; /* Keeps it on top of the Leaflet map */
+  backdrop-filter: blur(8px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.legend-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.legend-gradient {
+  /* This exactly matches the color threshold scale from your HTML */
+  background: linear-gradient(to right, #ffffb2, #fed976, #feb24c, #fd8d3c, #f03b20, #bd0026);
+  height: 12px;
+  width: 220px;
+  border-radius: 4px;
+  margin-bottom: 6px;
+  border: 1px solid rgba(0,0,0,0.2);
+}
+
+.legend-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: var(--text-main);
+}
+
+/* =========================================
+   CYBER CHAT UI - THE "CRAZY" CSS 
+   ========================================= */
+
+/* The Chat Trigger Button next to Acknowledge */
+.cyber-chat-trigger {
+  position: absolute;
+  top: 15px;      /* Distance from top edge */
+  right: 15px;    /* Distance from right edge */
+  width: 40px;    /* Slightly smaller to fit corners better */
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
+  color: var(--neon-blue);
+  border: 1px solid var(--neon-blue);
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.cyber-chat-trigger:hover {
+  background: var(--neon-blue);
+  color: #000;
+  box-shadow: 0 0 15px var(--neon-blue);
+  transform: scale(1.1);
+}
+
+/* The Main Floating Panel */
+.cyber-chat-panel {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 600px;
+  max-height: 85vh;
+  background: var(--bg-modal);
+  border: 1px solid var(--neon-blue);
+  border-radius: 4px;
+  box-shadow: 0 0 30px rgba(0, 242, 255, 0.15), inset 0 0 20px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+/* Glowing edges for the panel */
+.cyber-chat-panel::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--neon-blue);
+  box-shadow: 0 0 15px var(--neon-blue);
+  z-index: 10;
+}
+
+/* Header */
+.cyber-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 25px;
+  background: rgba(0, 0, 0, 0.4);
+  border-bottom: 1px dashed var(--neon-blue);
+  z-index: 20;
+}
+
+.bot-icon-wrapper {
+  color: var(--neon-blue);
+  background: rgba(0, 242, 255, 0.1);
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 242, 255, 0.3);
+}
+
+.cyber-title {
+  color: var(--text-main);
+  font-size: 1.1rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-shadow: 0 0 5px var(--neon-blue);
+}
+
+.cyber-subtitle {
+  color: var(--neon-green);
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  margin-top: 2px;
+}
+
+.cyber-close-btn {
+  background: transparent;
+  border: none;
+  color: var(--neon-red);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cyber-close-btn:hover {
+  transform: rotate(90deg) scale(1.2);
+  text-shadow: 0 0 10px var(--neon-red);
+}
+
+/* Chat Body area */
+.cyber-chat-body {
+  flex: 1;
+  padding: 25px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.1) 0px,
+    rgba(0, 0, 0, 0.1) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+}
+
+/* Empty State */
+.empty-chat-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--text-muted);
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+.empty-chat-state span {
+  font-size: 0.75rem;
+  color: var(--text-subtle);
+  margin-top: 10px;
+}
+
+/* Messages */
+.cyber-message-wrapper {
+  display: flex;
+  width: 100%;
+}
+
+.cyber-message {
+  max-width: 80%;
+  padding: 15px 20px;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.msg-user {
+  background: rgba(0, 242, 255, 0.1);
+  color: var(--neon-blue);
+  border: 1px solid var(--neon-blue);
+  border-radius: 8px 0px 8px 8px; /* Sharp top-right corner */
+  border-right: 4px solid var(--neon-blue);
+}
+
+.msg-bot {
+  background: var(--bg-panel);
+  color: var(--text-main);
+  border: 1px solid var(--border-main);
+  border-radius: 0px 8px 8px 8px; /* Sharp top-left corner */
+  border-left: 4px solid var(--neon-green);
+}
+
+/* Input Area */
+.cyber-input-area {
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  border-top: 1px dashed var(--neon-blue);
+}
+
+.cyber-prompt-symbol {
+  color: var(--neon-green);
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-right: 10px;
+  animation: blink 1s step-end infinite;
+}
+
+.cyber-textarea {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  font-size: 1rem;
+  max-height: 100px;
+  resize: none;
+  padding: 5px 0;
+}
+
+.cyber-textarea:focus {
+  outline: none;
+}
+
+.cyber-textarea::placeholder {
+  color: var(--text-subtle);
+  letter-spacing: 2px;
+}
+
+.cyber-send-btn {
+  background: transparent;
+  color: var(--neon-blue);
+  border: 1px solid var(--neon-blue);
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cyber-send-btn:hover:not(:disabled) {
+  background: var(--neon-blue);
+  color: #000;
+  box-shadow: 0 0 15px var(--neon-blue);
+}
+
+.cyber-send-btn:disabled {
+  border-color: var(--border-main);
+  color: var(--text-subtle);
+  cursor: not-allowed;
+}
+
+/* Animations */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Custom Scrollbar for Cyber Chat */
+.cyber-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--neon-blue) transparent;
+}
+
+.cyber-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.cyber-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.cyber-scroll::-webkit-scrollbar-thumb {
+  background-color: var(--neon-blue);
+  border-radius: 10px;
+  border: 1px solid var(--bg-modal);
+}
+
+/* Constrain the chat panel height */
+.cyber-chat-panel {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Keeps header/input fixed */
+}
+
+.cyber-chat-body {
+  overflow-y: auto; /* Only this part scrolls */
+  scroll-behavior: smooth;
+}

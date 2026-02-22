@@ -25,3 +25,6 @@ dist-ssr
 
 .env
 .env.local
+
+venv
+backend/saul-mlx-4bit

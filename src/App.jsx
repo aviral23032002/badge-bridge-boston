@@ -11,7 +11,6 @@ import './App.css';
 const App = () => {
   const globeRef = useRef();
   
-  // CHANGED: This is now false, so the app boots up in Dark Mode
   const [isLightMode, setIsLightMode] = useState(false); 
   
   const [screen, setScreen] = useState('GLOBE'); 
@@ -22,6 +21,9 @@ const App = () => {
   const [currentPhaseId, setCurrentPhaseId] = useState("start");
   const [feedback, setFeedback] = useState({ message: "", isError: false });
   const [showFeedback, setShowFeedback] = useState(false);
+
+  // Tracks the history of correct choices made in a scenario
+  const [choiceHistory, setChoiceHistory] = useState([]);
 
   useEffect(() => {
     if (globeRef.current && globeState === 'IDLE') {
@@ -36,7 +38,6 @@ const App = () => {
       globeRef.current.controls().autoRotate = false;
       globeRef.current.pointOfView({ lat: 42.3601, lng: -71.0589, altitude: 0.2 }, 2000);
       
-      // Cinematic Cut directly to the Boston Map
       setTimeout(() => { 
         changeScreen('BOSTON_MAP'); 
       }, 2000);
@@ -48,6 +49,10 @@ const App = () => {
     setTimeout(() => {
       setScreen(nextScreen);
       setTransitioning(false);
+      // Clear history when leaving the training module
+      if (nextScreen !== 'TRAINING') {
+        setChoiceHistory([]);
+      }
     }, 600);
   };
 
@@ -57,15 +62,15 @@ const App = () => {
   };
 
   const startTraining = (selectedModule) => {
-  // Update the active scenario to include the specific phases from the module
-  setActiveScenario(prev => ({
-    ...prev,
-    phases: selectedModule.phases,
-    title: selectedModule.title // Updates the title to the specific game name
-  }));
-  setCurrentPhaseId("start");
-  changeScreen('TRAINING');
-};
+    setActiveScenario(prev => ({
+      ...prev,
+      phases: selectedModule.phases,
+      title: selectedModule.title 
+    }));
+    setCurrentPhaseId("start");
+    setChoiceHistory([]); // Reset history on fresh start
+    changeScreen('TRAINING');
+  };
 
   const handleChoice = (choice) => {
     setFeedback({ message: choice.feedback, isError: !choice.isCorrect });
@@ -74,6 +79,17 @@ const App = () => {
 
   const proceed = (nextId) => {
     setShowFeedback(false);
+    
+    // Find the correct choice object from the current phase BEFORE moving to nextId
+    if (activeScenario && activeScenario.phases[currentPhaseId]) {
+      const correctChoice = activeScenario.phases[currentPhaseId].choices.find(c => c.isCorrect);
+      // Push the TEXT of the correct choice into the history array
+      if (correctChoice && correctChoice.text) {
+        setChoiceHistory(prev => [...prev, correctChoice.text]);
+      }
+    }
+    
+    // Now move to the next phase
     setCurrentPhaseId(nextId);
   };
 
@@ -121,6 +137,7 @@ const App = () => {
             proceed={proceed}
             changeScreen={changeScreen}
             setShowFeedback={setShowFeedback}
+            choiceHistory={choiceHistory} 
           />
         )}
       </main>

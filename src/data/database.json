@@ -63,6 +63,79 @@
           "choices": []
         }
       }
+    },
+    "possession_class_a": {
+      "id": "possession_class_a",
+      "title": "The Observed 'Drop'",
+      "description": "A cruiser slows down and an officer steps out questioning an item on the ground.",
+      "phases": {
+        "start": {
+          "title": "Phase 1: The Observed 'Drop'",
+          "description": "You're walking in Roxbury. A cruiser slows down and an officer steps out. 'Hey, hold up. I saw you drop something. What was that?'",
+          "choices": [
+            { "text": "Panic and try to kick the item under a nearby car.", "isCorrect": false, "feedback": "DANGEROUS: BPD Rule 103 defines this as 'evasive behavior,' which provides probable cause for tampering.", "next_id": "start" },
+            { "text": "Pick it up and hand it to the officer to show you're 'clean'.", "isCorrect": false, "feedback": "TRAP: Under BPD Rule 310, physical control and handing over an item legally confirms 'possession.'", "next_id": "start" },
+            { "text": "Immediately say: 'I didn't drop anything. Am I free to go?'", "isCorrect": true, "feedback": "SMART: This triggers BPD Rule 323 logic. You are testing the legality of the detention.", "next_id": "the_frisk_limit" }
+          ]
+        },
+        "the_frisk_limit": {
+          "title": "Phase 2: The Safety Frisk",
+          "description": "The officer says, 'I'm not so sure. I'm doing a quick pat-down for my safety to check for needles or weapons.'",
+          "choices": [
+            { "text": "State clearly: 'I do not consent to this search or any search of my person.'", "isCorrect": true, "feedback": "EXCELLENT: Per BPD Rule 334, withholding consent ensures evidence found illegally may be suppressed.", "next_id": "victory" },
+            { "text": "Say: 'Fine, but I don't have anything on me.'", "isCorrect": false, "feedback": "WAIVER: Giving 'voluntary consent' under Rule 334 waives your 4th Amendment protections.", "next_id": "the_frisk_limit" }
+          ]
+        },
+        "victory": { "title": "RIGHTS PROTECTED", "description": "You used Rule 323 and Rule 334 to protect your legal standing.", "choices": [] }
+      }
+    },
+    "assault_battery": {
+      "id": "assault_battery",
+      "title": "Scene of Conflict",
+      "description": "Navigating police arrival after a physical altercation.",
+      "phases": {
+        "start": {
+          "title": "Phase 1: The Scene",
+          "description": "A heated argument turns physical. BPD arrives. 'Hands up! What happened here?'",
+          "choices": [
+            { "text": "Explain that the other person started it.", "isCorrect": false, "feedback": "CAUTION: Under Rule 332, admitting to contact establishes the elements of a crime.", "next_id": "start" },
+            { "text": "Ask: 'Am I free to go, or am I being detained?'", "isCorrect": true, "feedback": "SMART: Forces the officer to articulate 'Reasonable Suspicion' per Rule 323.", "next_id": "the_medical_tactic" }
+          ]
+        },
+        "the_medical_tactic": {
+          "title": "Phase 2: Investigatory Pressure",
+          "description": "Officer: 'If you tell me the truth now, it will look better for you later.'",
+          "choices": [
+            { "text": "State: 'I am invoking my right to remain silent and I want a lawyer.'", "isCorrect": true, "feedback": "EXCELLENT: Per Rule 332, once you request counsel, all questioning must cease.", "next_id": "victory" },
+            { "text": "Tell the officer exactly where they hit you.", "isCorrect": false, "feedback": "TRAP: Providing details creates a recorded admission of your involvement.", "next_id": "the_medical_tactic" }
+          ]
+        },
+        "victory": { "title": "LEGAL SHIELD ACTIVE", "description": "You protected your future by refusing a street-level confession.", "choices": [] }
+      }
+    },
+    "disorderly_conduct": {
+      "id": "disorderly_conduct",
+      "title": "Disorderly & Recording",
+      "description": "Handling dispersal orders and recording police activity.",
+      "phases": {
+        "start": {
+          "title": "Phase 1: Dispersal Order",
+          "description": "Officer: 'You kids are making too much noise. Move along or I'm locking you up for Disorderly.'",
+          "choices": [
+            { "text": "State: 'We will move, but I want to document we were peaceful.'", "isCorrect": true, "feedback": "SMART: Complying while asserting rights prevents arrest under Rule 202.", "next_id": "the_camera_block" },
+            { "text": "Yell back that it is a public park.", "isCorrect": false, "feedback": "RISKY: Rule 103 allows citations for 'tumultuous' behavior.", "next_id": "start" }
+          ]
+        },
+        "the_camera_block": {
+          "title": "Phase 2: The Camera Block",
+          "description": "Officer: 'Put the phone away. You're interfering.'",
+          "choices": [
+            { "text": "Step back and say: 'I have a 1st Amendment right to film in public.'", "isCorrect": true, "feedback": "EXCELLENT: Rule 405 protects filming as long as you don't 'physically interfere.'", "next_id": "victory" },
+            { "text": "Push his hand away.", "isCorrect": false, "feedback": "DANGER: Physical contact is Assault on a P.O.", "next_id": "the_camera_block" }
+          ]
+        },
+        "victory": { "title": "KNOWLEDGE IS POWER", "description": "You avoided a 'contempt of cop' arrest using Rule 103 and 405.", "choices": [] }
+      }
     }
   },
   "scenarios": {
@@ -76,7 +149,7 @@
         "communityContext": { "focus": "Property / Drugs", "peakTime": "8:00 PM - 12:00 AM" },
         "topArrests": "Drugs (65), Assault 209A (56), Trespassing (55)" 
       },
-      "availableModuleIds": ["sidewalk_stop"]
+      "availableModuleIds": ["sidewalk_stop", "disorderly_conduct"]
     },
     "dorchester": {
       "id": "dorchester",
@@ -88,7 +161,7 @@
         "communityContext": { "focus": "Violent Crime / Weapons", "peakTime": "10:00 PM - 2:00 AM" },
         "topArrests": "Assault 209A (1761), Firearms (980), Assault w/ Weapon (525)" 
       },
-      "availableModuleIds": ["sidewalk_stop", "firearm_stop"]
+      "availableModuleIds": ["sidewalk_stop", "firearm_stop", "possession_class_a", "assault_battery"]
     },
     "hyde_park": {
       "id": "hyde_park",
@@ -100,7 +173,7 @@
         "communityContext": { "focus": "Domestic / Weapons", "peakTime": "6:00 PM - 1:00 AM" },
         "topArrests": "Assault 209A (316), Firearms (69), Assault w/ Weapon (48)" 
       },
-      "availableModuleIds": ["firearm_stop"]
+      "availableModuleIds": ["firearm_stop", "assault_battery"]
     },
     "roslindale": {
       "id": "roslindale",
@@ -112,7 +185,7 @@
         "communityContext": { "focus": "Assault / Firearms", "peakTime": "7:00 PM - Midnight" },
         "topArrests": "Assault 209A (188), Firearms (52), Assault w/ Weapon (34)" 
       },
-      "availableModuleIds": ["sidewalk_stop"]
+      "availableModuleIds": ["sidewalk_stop", "disorderly_conduct"]
     },
     "west_roxbury": {
       "id": "west_roxbury",
@@ -124,7 +197,7 @@
         "communityContext": { "focus": "Domestic / Property", "peakTime": "4:00 PM - 10:00 PM" },
         "topArrests": "Assault 209A (172), Assault w/ Weapon (31), Firearms (28)" 
       },
-      "availableModuleIds": ["sidewalk_stop"]
+      "availableModuleIds": ["sidewalk_stop", "possession_class_a"]
     }
   }
 }
