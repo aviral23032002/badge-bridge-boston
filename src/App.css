@@ -159,7 +159,13 @@
 .mission-brief p { color: var(--text-muted); font-size: 0.95rem; }
 .btn-launch { background: var(--neon-blue); color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.5); border: none; padding: 15px 30px; font-size: 1.1rem; font-weight: 900; letter-spacing: 1px; display: flex; align-items: center; gap: 10px; cursor: pointer; border-radius: 4px; transition: 0.2s; }
 .light-mode .btn-launch { color: #fff; } 
-.btn-launch:hover { background: var(--text-main); color: var(--bg-main); transform: scale(1.05); }
+.btn-launch:hover { 
+  background: var(--neon-blue); 
+  color: #fff; 
+  transform: scale(1.05); 
+  filter: brightness(1.15); /* Makes the button 'glow' brighter instead of turning black */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
 
 /* TRAINING UI */
 .phase-container { width: 100%; max-width: 900px; display: flex; flex-direction: column; align-items: center; transition: all 0.3s ease; z-index: 20; }
@@ -239,3 +245,33 @@
   .hide-mobile { display: none; }
 }
 
+/* MODULE SELECTOR ARROWS (Inside Intel Footer) */
+.module-selector-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 5px;
+}
+
+.module-selector-header h3 {
+  color: var(--neon-blue);
+  font-size: 1.3rem;
+  margin: 0; /* Remove default margin so arrows align perfectly */
+}
+
+.module-arrow-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: 0.2s;
+}
+
+.module-arrow-btn:hover {
+  color: var(--neon-blue);
+  transform: scale(1.2);
+}

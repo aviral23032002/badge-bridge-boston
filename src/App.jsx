@@ -56,10 +56,16 @@ const App = () => {
     changeScreen('INTEL');
   };
 
-  const startTraining = () => {
-    setCurrentPhaseId("start");
-    changeScreen('TRAINING');
-  };
+  const startTraining = (selectedModule) => {
+  // Update the active scenario to include the specific phases from the module
+  setActiveScenario(prev => ({
+    ...prev,
+    phases: selectedModule.phases,
+    title: selectedModule.title // Updates the title to the specific game name
+  }));
+  setCurrentPhaseId("start");
+  changeScreen('TRAINING');
+};
 
   const handleChoice = (choice) => {
     setFeedback({ message: choice.feedback, isError: !choice.isCorrect });

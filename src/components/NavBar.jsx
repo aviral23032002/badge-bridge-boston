@@ -13,7 +13,7 @@ const NavBar = ({ screen, globeState, isLightMode, setIsLightMode }) => {
         <div className="status-badge">
           <div className="live-dot"></div>
           <span className="hide-mobile font-medium">
-            {screen === 'GLOBE' && globeState === 'IDLE' && "COMMUNITY DASHBOARD"}
+            {screen === 'GLOBE' && globeState === 'IDLE' && "GEO-SCAN INTERFACE"}
             {screen === 'GLOBE' && globeState !== 'IDLE' && "ISOLATING SECTOR"}
             {/* UPDATED THIS LINE: */}
             {screen === 'BOSTON_MAP' && "SELECT NEIGHBORHOOD"}

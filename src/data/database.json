@@ -1,0 +1,130 @@
+{
+  "hotspots": [
+    { "id": "beacon_hill", "name": "Beacon Hill", "lat": 42.3588, "lng": -71.0707 },
+    { "id": "dorchester", "name": "Dorchester", "lat": 42.3016, "lng": -71.0676 },
+    { "id": "hyde_park", "name": "Hyde Park", "lat": 42.2565, "lng": -71.1243 },
+    { "id": "roslindale", "name": "Roslindale", "lat": 42.2832, "lng": -71.1270 },
+    { "id": "west_roxbury", "name": "West Roxbury", "lat": 42.2798, "lng": -71.1627 }
+  ],
+  "modules": {
+    "sidewalk_stop": {
+      "id": "sidewalk_stop",
+      "title": "Public Space Encounter",
+      "description": "Standard interaction in a public walkway.",
+      "phases": {
+        "start": {
+          "title": "Initial Encounter",
+          "description": "An officer approaches and asks for identification while you are walking.",
+          "choices": [
+            { "text": "Provide ID and ask if you are free to go", "isCorrect": true, "feedback": "Good. Complying with basic ID requests safely establishes baseline cooperation while asserting your rights.", "next_id": "victory" },
+            { "text": "Walk away abruptly", "isCorrect": false, "feedback": "Walking away from a lawful stop can result in detainment or escalation. Always ask if you are free to leave first.", "next_id": "start" }
+          ]
+        },
+        "victory": { 
+          "title": "ENCOUNTER MANAGED", 
+          "description": "You successfully navigated the situation by staying calm and knowing your rights.", 
+          "choices": [] 
+        }
+      }
+    },
+    "firearm_stop": {
+      "id": "firearm_stop",
+      "title": "The High-Stakes Stop",
+      "description": "Advanced scenario involving a weapons investigation.",
+      "phases": {
+        "start": {
+          "title": "Initial Contact",
+          "description": "A cruiser pulls onto the sidewalk, blocking your path. The officer shouts: 'Keep your hands where I can see them! Why are you walking so heavy on that right side?'",
+          "choices": [
+            { "text": "Keep walking and ignore them.", "isCorrect": false, "feedback": "DANGEROUS. Ignoring a direct 'show of authority' in this context can justify a pursuit.", "next_id": "start" },
+            { "text": "Stop, keep hands visible, and ask: 'Officer, am I free to leave?'", "isCorrect": true, "feedback": "CORRECT. This establishes whether this is a consensual encounter or a seizure.", "next_id": "detainment_check" },
+            { "text": "Put your hands in your pockets.", "isCorrect": false, "feedback": "HIGH RISK. Reaching for pockets during a firearm stop escalates the situation immediately.", "next_id": "start" }
+          ]
+        },
+        "detainment_check": {
+          "title": "The Investigation",
+          "description": "The officer gets out. 'We got a call about a weapon. We need to check you out for safety. You got anything on you?'",
+          "choices": [
+            { "text": "Say: 'I'm not answering questions without a lawyer.'", "isCorrect": true, "feedback": "EXCELLENT. Invoking your 5th Amendment right prevents self-incrimination.", "next_id": "search_scenario" },
+            { "text": "Say: 'I don't have anything, I'm just a student.'", "isCorrect": false, "feedback": "CAUTION. Offering personal info gives them more 'reasonable suspicion' to hold you longer.", "next_id": "detainment_check" }
+          ]
+        },
+        "search_scenario": {
+          "title": "The Pat Down",
+          "description": "The officer moves in: 'I'm gonna do a quick pat-down for my safety. Don't move.' He reaches for your waistline.",
+          "choices": [
+            { "text": "State clearly: 'I do not consent to this search.'", "isCorrect": true, "feedback": "PERFECT. You protect your legal rights even if you cannot physically stop the frisk.", "next_id": "victory" },
+            { "text": "Twist away to avoid the touch.", "isCorrect": false, "feedback": "DANGEROUS. Physical resistance gives them the right to use force.", "next_id": "search_scenario" }
+          ]
+        },
+        "victory": {
+          "title": "KNOWLEDGE IS POWER",
+          "description": "You successfully navigated a high-risk stop by remaining calm and withdrawing consent.",
+          "choices": []
+        }
+      }
+    }
+  },
+  "scenarios": {
+    "beacon_hill": {
+      "id": "beacon_hill",
+      "location": "Beacon Hill",
+      "neighborhoodData": {
+        "interactionRate": "AVERAGE",
+        "fioData": { "stops": 410, "friskRate": "12%", "basis": "Encounter / Suspicion" },
+        "misconductData": { "sustained": 12, "topViolation": "Respectful Treatment", "actionRate": "Moderate" },
+        "communityContext": { "focus": "Property / Drugs", "peakTime": "8:00 PM - 12:00 AM" },
+        "topArrests": "Drugs (65), Assault 209A (56), Trespassing (55)" 
+      },
+      "availableModuleIds": ["sidewalk_stop"]
+    },
+    "dorchester": {
+      "id": "dorchester",
+      "location": "Dorchester",
+      "neighborhoodData": {
+        "interactionRate": "HIGH",
+        "fioData": { "stops": 3200, "friskRate": "35%", "basis": "Traffic / Suspicion" },
+        "misconductData": { "sustained": 85, "topViolation": "Use of Force", "actionRate": "Low" },
+        "communityContext": { "focus": "Violent Crime / Weapons", "peakTime": "10:00 PM - 2:00 AM" },
+        "topArrests": "Assault 209A (1761), Firearms (980), Assault w/ Weapon (525)" 
+      },
+      "availableModuleIds": ["sidewalk_stop", "firearm_stop"]
+    },
+    "hyde_park": {
+      "id": "hyde_park",
+      "location": "Hyde Park",
+      "neighborhoodData": {
+        "interactionRate": "MODERATE",
+        "fioData": { "stops": 850, "friskRate": "20%", "basis": "Suspicion / Encounter" },
+        "misconductData": { "sustained": 28, "topViolation": "Biased Policing", "actionRate": "Moderate" },
+        "communityContext": { "focus": "Domestic / Weapons", "peakTime": "6:00 PM - 1:00 AM" },
+        "topArrests": "Assault 209A (316), Firearms (69), Assault w/ Weapon (48)" 
+      },
+      "availableModuleIds": ["firearm_stop"]
+    },
+    "roslindale": {
+      "id": "roslindale",
+      "location": "Roslindale",
+      "neighborhoodData": {
+        "interactionRate": "MODERATE",
+        "fioData": { "stops": 620, "friskRate": "18%", "basis": "Traffic / Encounter" },
+        "misconductData": { "sustained": 15, "topViolation": "Neglect of Duty", "actionRate": "High" },
+        "communityContext": { "focus": "Assault / Firearms", "peakTime": "7:00 PM - Midnight" },
+        "topArrests": "Assault 209A (188), Firearms (52), Assault w/ Weapon (34)" 
+      },
+      "availableModuleIds": ["sidewalk_stop"]
+    },
+    "west_roxbury": {
+      "id": "west_roxbury",
+      "location": "West Roxbury",
+      "neighborhoodData": {
+        "interactionRate": "LOW",
+        "fioData": { "stops": 300, "friskRate": "8%", "basis": "Traffic Violation" },
+        "misconductData": { "sustained": 9, "topViolation": "Respectful Treatment", "actionRate": "High" },
+        "communityContext": { "focus": "Domestic / Property", "peakTime": "4:00 PM - 10:00 PM" },
+        "topArrests": "Assault 209A (172), Assault w/ Weapon (31), Firearms (28)" 
+      },
+      "availableModuleIds": ["sidewalk_stop"]
+    }
+  }
+}
