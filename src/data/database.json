@@ -1506,6 +1506,3365 @@
           "choices": []
         }
       }
+    },
+    "unlawful_possession_ammunition": {
+      "id": "unlawful_possession_ammunition",
+      "title": "Unlawful Possession of Ammunition",
+      "description": "Navigating 'constructive possession', plain view discoveries, and the strict ammunition laws (FID requirement) in Massachusetts.",
+      "phases": {
+        "start": {
+          "title": "Phase 1: The Plain View Discovery",
+          "description": "You are a passenger in a friend's car pulled over for speeding. The officer shines his flashlight inside and spots a single unspent 9mm bullet on the floor mat near your feet. 'Who does that belong to?'",
+          "choices": [
+            {
+              "text": "Remain completely silent.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: You have a 5th Amendment right to silence. In MA, possessing even a single bullet without an FID card is a crime. Silence protects you from admitting ownership.",
+              "next_id": "the_exit_order"
+            },
+            {
+              "text": "Say: 'I don't know, it's not my car!'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: While true, you are engaging in the interrogation. If the driver blames you later, your defensive statement can be twisted by prosecutors.",
+              "next_id": "the_exit_order"
+            },
+            {
+              "text": "Say: 'We went to the shooting range yesterday, it must have fallen out.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: You just confessed to handling/possessing ammunition. If you don't have an FID card, you just admitted to a crime.",
+              "next_id": "the_exit_order"
+            },
+            {
+              "text": "Kick the bullet under the seat to hide it.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "DANGEROUS: The officer already saw it. Moving it constitutes 'Tampering with Evidence' and gives immediate probable cause to drag you out of the car.",
+              "next_id": "the_exit_order"
+            }
+          ]
+        },
+        "the_exit_order": {
+          "title": "Phase 2: The Exit Order",
+          "description": "The officer says, 'Since there is ammunition in plain view, I have Probable Cause to search the vehicle for a weapon. Both of you, step out.'",
+          "choices": [
+            {
+              "text": "Step out calmly, lock your door, and state: 'I do not consent to any searches.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: A bullet in plain view often gives them legal grounds to search the car for a gun. By stating non-consent, your lawyer can still challenge the legality of the search later.",
+              "next_id": "the_constructive_trap"
+            },
+            {
+              "text": "Say: 'You can't search, you need a warrant!' and refuse to move.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "DANGEROUS: The 'Automobile Exception' allows warrantless searches if probable cause exists. Refusing an exit order results in forced extraction and arrest.",
+              "next_id": "the_constructive_trap"
+            },
+            {
+              "text": "Step out and say: 'Go ahead, search, I have nothing on me.'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "WAIVER: You just gave voluntary consent. Never consent to a search, even if you think you are completely innocent.",
+              "next_id": "the_constructive_trap"
+            },
+            {
+              "text": "Grab your backpack from the backseat before stepping out.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: Reaching for bags when a weapons investigation is occurring is a massive safety threat. Officers may draw their firearms.",
+              "next_id": "the_constructive_trap"
+            }
+          ]
+        },
+        "the_constructive_trap": {
+          "title": "Phase 3: The 'Constructive Possession' Trap",
+          "description": "They search the car and find no gun, just the one bullet. The officer turns to you: 'It was right by your feet. You are in constructive possession of ammunition. Do you have an FID card?'",
+          "choices": [
+            {
+              "text": "State: 'I am invoking my right to remain silent. I will not answer questions.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: 'Constructive possession' means you knew it was there and had the ability to control it. Silence denies them the proof that you even knew the bullet existed.",
+              "next_id": "the_ultimatum"
+            },
+            {
+              "text": "Say: 'I didn't even know it was there!'",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: While this denies knowledge, you are still answering their questions. Silence is a much stronger legal shield than engaging.",
+              "next_id": "the_ultimatum"
+            },
+            {
+              "text": "Say: 'No, I don't have an FID card.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: You just confirmed you do not have the legal license required, doing the police's investigative work for them.",
+              "next_id": "the_ultimatum"
+            },
+            {
+              "text": "Blame the driver: 'It's his car, it has to be his bullet.'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: Throwing friends under the bus doesn't clear you of 'constructive possession', as multiple people can possess the same item legally. Stay silent.",
+              "next_id": "the_ultimatum"
+            }
+          ]
+        },
+        "the_ultimatum": {
+          "title": "Phase 4: The Ultimatum",
+          "description": "The officer pulls out handcuffs. 'If nobody admits whose bullet this is, I'm arresting both of you right now.'",
+          "choices": [
+            {
+              "text": "Maintain your silence and request a lawyer.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: This is a classic bluff to force a confession. Let them arrest you both. The DA often drops cases where they can't prove exactly whose item it was.",
+              "next_id": "the_arrest_miranda"
+            },
+            {
+              "text": "Confess that it's yours to save your friend from getting arrested.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: You just sacrificed yourself and guaranteed a criminal conviction for Unlawful Possession. Never take the fall.",
+              "next_id": "the_arrest_miranda"
+            },
+            {
+              "text": "Beg the officer to just throw the bullet away.",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "WAIVER: Begging is an admission of guilt. Police do not negotiate on the side of the road regarding firearms/ammo offenses.",
+              "next_id": "the_arrest_miranda"
+            },
+            {
+              "text": "Ask: 'Can you really arrest both of us for one bullet?'",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: Yes, they can under joint constructive possession. Arguing the law with the officer is pointless. Just invoke your rights.",
+              "next_id": "the_arrest_miranda"
+            }
+          ]
+        },
+        "the_arrest_miranda": {
+          "title": "Phase 5: The Miranda Dodge",
+          "description": "You are arrested. In the cruiser, the officer doesn't read you Miranda rights. He asks casually, 'Look, if you just tell me where you got the bullet, I won't charge you with anything else.'",
+          "choices": [
+            {
+              "text": "Say explicitly: 'I want my attorney.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: Miranda isn't always read immediately. By asking you a question while in custody, he is trying to bypass your rights. Invoking counsel halts all questioning.",
+              "next_id": "station_interview"
+            },
+            {
+              "text": "Say: 'I found it on the street and kept it as a souvenir.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: You just confessed to knowingly possessing it. It doesn't matter how you got it; possession without a license is the crime.",
+              "next_id": "station_interview"
+            },
+            {
+              "text": "Say: 'You didn't read me my rights, so I don't have to answer.'",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: Never give the police free legal lessons. Let them make mistakes that your lawyer can use to get the case dismissed.",
+              "next_id": "station_interview"
+            },
+            {
+              "text": "Nod to signal you understand, but say nothing.",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "WAIVER: Non-verbal communication can be interpreted as a waiver. You must verbally, explicitly invoke your right to a lawyer.",
+              "next_id": "station_interview"
+            }
+          ]
+        },
+        "station_interview": {
+          "title": "Phase 6: The Station Interview",
+          "description": "At the station, a detective tries again. 'It's just a piece of brass and lead, kid. Sign this form saying it was in your pocket and we'll let you go on personal recognizance (no bail).'",
+          "choices": [
+            {
+              "text": "Refuse to sign the document and remain silent.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: Detectives have no authority over bail; only the Bail Commissioner or Judge does. Signing that paper is a written confession to the crime.",
+              "next_id": "the_bail_commissioner_ammo"
+            },
+            {
+              "text": "Sign it to avoid having to pay bail.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: You traded your freedom for tonight for a permanent criminal conviction on a weapons-related charge.",
+              "next_id": "the_bail_commissioner_ammo"
+            },
+            {
+              "text": "Say: 'It wasn't in my pocket, it was on the floor.'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "CRIMINAL WAIVER: You just corrected him, which proves you knew where it was, sealing the 'constructive possession' argument.",
+              "next_id": "the_bail_commissioner_ammo"
+            },
+            {
+              "text": "Ask to read the document carefully first.",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: Reading it does nothing for you since you shouldn't sign it anyway. Absolute refusal is the only safe option.",
+              "next_id": "the_bail_commissioner_ammo"
+            }
+          ]
+        },
+        "the_bail_commissioner_ammo": {
+          "title": "Phase 7: The Bail Hearing",
+          "description": "The Bail Commissioner arrives to determine your release. Because it's an ammunition charge, they ask, 'Do you have any firearms at home?'",
+          "choices": [
+            {
+              "text": "State clearly: 'I decline to answer that question without my lawyer.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: While you should answer biographical questions (name, address) for bail, questions about owning weapons relate directly to the investigation. Refuse to answer.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Say: 'No, I don't own any guns.'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: If they search your home later and find one, you've lied during a formal proceeding. Silence is better.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Say: 'Yes, but they are legal.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: If you don't have an FID/LTC (which is why you were arrested for the ammo), admitting you have guns at home just authorized a raid on your house.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Refuse to speak to the Bail Commissioner entirely.",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: You need to give them your name and address to get bail. Selectively refusing investigatory questions is the correct path.",
+              "next_id": "victory"
+            }
+          ]
+        },
+        "victory": {
+          "title": "ENCOUNTER MASTERED",
+          "description": "You successfully avoided the constructive possession trap. Your lawyer can now argue the state cannot prove you knew the ammunition was in the vehicle.",
+          "choices": []
+        }
+      }
+    },
+    "unlawful_possession_firearm": {
+      "id": "unlawful_possession_firearm",
+      "title": "Unlawful Possession of a Firearm",
+      "description": "Surviving a high-risk 'Terry Stop', dealing with mandatory minimum gun laws in MA, and protecting against 5th Amendment waivers.",
+      "phases": {
+        "start": {
+          "title": "Phase 1: The 'Terry' Stop",
+          "description": "You are walking at night. A cruiser aggressively cuts you off. Two officers jump out. 'Hey! Keep your hands where we can see them. We got a call about a person matching your description with a gun.'",
+          "choices": [
+            {
+              "text": "Keep hands visible, make no sudden movements, and state: 'Am I being detained?'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: This is a high-stakes encounter. Comply physically to survive. Asking if you are detained legally categorizes the stop for your defense lawyer.",
+              "next_id": "the_frisk"
+            },
+            {
+              "text": "Reach quickly into your pocket for your ID to prove who you are.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: Never reach for anything when police are investigating a firearm. They may shoot you, believing you are reaching for a weapon.",
+              "next_id": "the_frisk"
+            },
+            {
+              "text": "Run away immediately.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "DANGEROUS: Fleeing confirms their suspicion, triggers a foot pursuit, and virtually guarantees violent apprehension and arrest.",
+              "next_id": "the_frisk"
+            },
+            {
+              "text": "Yell: 'You're harassing me! I don't have anything!'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: Yelling and acting erratic gives them further 'Reasonable Suspicion' that you are a danger, validating the stop.",
+              "next_id": "the_frisk"
+            }
+          ]
+        },
+        "the_frisk": {
+          "title": "Phase 2: The Frisk",
+          "description": "The officer grabs your arms. 'I'm patting you down for weapons for my safety.' He pats your waistband and feels the hard shape of a handgun.",
+          "choices": [
+            {
+              "text": "State clearly: 'I do not consent to this search, but I will not resist.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: They are legally allowed to frisk for weapons if they have reasonable suspicion. Stating non-consent protects you if the initial stop is later ruled unconstitutional.",
+              "next_id": "the_ltc_question"
+            },
+            {
+              "text": "Try to swat his hands away from your waist.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "DANGEROUS: Physically resisting a weapons frisk will instantly result in extreme force, takedown, and Assault charges.",
+              "next_id": "the_ltc_question"
+            },
+            {
+              "text": "Say: 'It's just my cell phone!'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: Lying about a firearm makes you look highly suspicious and guilty in the police report. Silence is better.",
+              "next_id": "the_ltc_question"
+            },
+            {
+              "text": "Say: 'Go ahead, you won't find anything.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "WAIVER: Giving voluntary consent ruins any chance your lawyer has of suppressing the gun in court later based on an illegal stop.",
+              "next_id": "the_ltc_question"
+            }
+          ]
+        },
+        "the_ltc_question": {
+          "title": "Phase 3: The License Question",
+          "description": "The officer lifts your shirt, removes the firearm, and secures it. 'Do you have a License to Carry (LTC) for this?'",
+          "choices": [
+            {
+              "text": "State: 'I invoke my 5th Amendment right and will not answer questions.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: In MA, the burden is on you to prove you have a license. However, admitting you don't have one is a confession. Silence forces them to do the paperwork.",
+              "next_id": "the_arrest_firearm"
+            },
+            {
+              "text": "Say: 'No, I don't have a license.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: You just handed them a full confession to a crime that carries a mandatory minimum prison sentence in Massachusetts.",
+              "next_id": "the_arrest_firearm"
+            },
+            {
+              "text": "Say: 'I carry it for self-defense because my neighborhood is dangerous.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: Self-defense is not a legal exception for carrying an unlicensed firearm. You just confessed.",
+              "next_id": "the_arrest_firearm"
+            },
+            {
+              "text": "Say: 'I left my license at home.'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: If this is a lie, they will run your name in the system, discover the lie, and use it against you at trial.",
+              "next_id": "the_arrest_firearm"
+            }
+          ]
+        },
+        "the_arrest_firearm": {
+          "title": "Phase 4: The Arrest & Miranda",
+          "description": "You are handcuffed and read your Miranda rights. The officer asks: 'Where did you buy this gun? If you tell us, maybe we can help you out.'",
+          "choices": [
+            {
+              "text": "State explicitly: 'I want a lawyer. I will not speak.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: Unlawful possession is a major felony. Any information you provide about how you got the gun can lead to federal trafficking charges. Shut it down.",
+              "next_id": "detective_threat"
+            },
+            {
+              "text": "Say: 'I bought it off a guy on the street.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: You just confessed to the crime, and possibly added a charge of illegally purchasing a firearm.",
+              "next_id": "detective_threat"
+            },
+            {
+              "text": "Say: 'It's my friend's gun, I was just holding it for him.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: 'Holding it' is legally identical to possessing it. You confessed to the crime.",
+              "next_id": "detective_threat"
+            },
+            {
+              "text": "Stay totally silent without invoking your rights.",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: Under Berghuis v. Thompkins, you must verbally invoke your right to remain silent, otherwise they can legally interrogate you for hours.",
+              "next_id": "detective_threat"
+            }
+          ]
+        },
+        "detective_threat": {
+          "title": "Phase 5: The Detective's Threat",
+          "description": "At the station, a detective says, 'This gun was used in a robbery last week. If you don't talk to me right now, I'm charging you with Armed Robbery too.'",
+          "choices": [
+            {
+              "text": "Maintain your demand for a lawyer and stay completely silent.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: This is a high-pressure bluff. Police are legally allowed to lie about evidence to terrify you into confessing to the possession charge.",
+              "next_id": "gun_dna"
+            },
+            {
+              "text": "Panic and say: 'I didn't rob anyone! I just bought the gun today!'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: The bluff worked. You avoided a fake robbery charge but gave them a taped confession to the mandatory-minimum firearm charge.",
+              "next_id": "gun_dna"
+            },
+            {
+              "text": "Ask: 'Are you lying to me?'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: Of course they will say no. Engaging with them keeps the interrogation going. Silence is the only escape.",
+              "next_id": "gun_dna"
+            },
+            {
+              "text": "Ask to take a lie detector test to prove you didn't do a robbery.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: Lie detectors are pseudoscience used to trick suspects. Never volunteer for one.",
+              "next_id": "gun_dna"
+            }
+          ]
+        },
+        "gun_dna": {
+          "title": "Phase 6: The DNA / Fingerprint Swab",
+          "description": "The detective gives up but says, 'Fine. I'm taking a buccal (cheek) swab for your DNA to match against the gun.'",
+          "choices": [
+            {
+              "text": "State: 'I do not consent to a DNA swab without a warrant.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: Taking DNA requires a search warrant. If you don't consent, they must go to a judge to get one, which takes time and creates a paper trail your lawyer can fight.",
+              "next_id": "dangerousness_hearing"
+            },
+            {
+              "text": "Let them swab you to show you are cooperative.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "WAIVER: You just gave them free evidence. If your DNA is on the gun, it proves you handled it, destroying a potential 'I didn't know it was in my pocket' defense.",
+              "next_id": "dangerousness_hearing"
+            },
+            {
+              "text": "Physically push the swab away from your face.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "DANGEROUS: Do not resist physically. Simply stating your non-consent loudly is all the legal protection you need.",
+              "next_id": "dangerousness_hearing"
+            },
+            {
+              "text": "Ask: 'Will my DNA be put in a database forever?'",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: Yes, it will. Stop asking questions and explicitly refuse consent.",
+              "next_id": "dangerousness_hearing"
+            }
+          ]
+        },
+        "dangerousness_hearing": {
+          "title": "Phase 7: The Phone Call",
+          "description": "You are finally allowed to make a phone call from the booking area. The officer is standing right next to you.",
+          "choices": [
+            {
+              "text": "Call a family member. Keep it brief: 'I've been arrested. Hire a lawyer. Do not ask me what happened on this phone.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: All booking phones are recorded. The prosecutor will absolutely listen to this call to see if you admit you had the gun. Keep it strictly logistical.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Call your friend and say: 'They found the burner, don't say anything.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: You just confessed on a recorded line. The prosecutor will play this audio for the jury.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Call your spouse and vent: 'I only carry it because our street is bad, this is unfair.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: Another taped confession. You just sealed your own fate.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Refuse to make a phone call.",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: You need outside help to arrange a lawyer for your impending dangerousness hearing (standard in MA gun cases). Make the call, just be smart.",
+              "next_id": "victory"
+            }
+          ]
+        },
+        "victory": {
+          "title": "ENCOUNTER MASTERED",
+          "description": "You survived a high-stakes firearm arrest. By demanding a lawyer and refusing DNA consent, you gave your defense team the best possible starting position.",
+          "choices": []
+        }
+      }
+    },
+    "violation_restraining_order": {
+      "id": "violation_restraining_order",
+      "title": "Violation of a Restraining Order (209A)",
+      "description": "Navigating accidental contact, digital traps, and strict liability laws surrounding Abuse Prevention Orders in Massachusetts.",
+      "phases": {
+        "start": {
+          "title": "Phase 1: The Accusation",
+          "description": "You are sitting in a coffee shop. Police walk in and approach you. 'Are you [Your Name]? Your ex-partner just called. She has a 209A Restraining Order against you and says you are violating it by being here.'",
+          "choices": [
+            {
+              "text": "State calmly: 'I have the right to remain silent and I want my attorney.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: 209A violations are strict liability. If the order says 'stay 100 yards away' and you are here, you are violating it, even if by accident. Say nothing.",
+              "next_id": "the_accidental_trap"
+            },
+            {
+              "text": "Say: 'I was here first! She walked in after me, tell her to leave!'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: MA law explicitly states that if the protected party arrives at a public place, the defendant must leave immediately. You just confessed to staying.",
+              "next_id": "the_accidental_trap"
+            },
+            {
+              "text": "Say: 'I didn't even know she was here.'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: While lack of knowledge is a defense, you are engaging in the investigation. The police will try to prove you *did* know.",
+              "next_id": "the_accidental_trap"
+            },
+            {
+              "text": "Run out the back door of the coffee shop.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "DANGEROUS: Fleeing turns a potential misunderstanding into a guaranteed arrest for the violation and resisting arrest.",
+              "next_id": "the_accidental_trap"
+            }
+          ]
+        },
+        "the_accidental_trap": {
+          "title": "Phase 2: The Digital Communication Trap",
+          "description": "The officer says, 'She also said you've been texting her all morning. A 'no contact' order means no texting. Did you send her any messages today?'",
+          "choices": [
+            {
+              "text": "Maintain your silence.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: Any contact—even an emoji, a 'like' on Facebook, or an accidental text—is a violation. Denying them a confession forces them to prove the phone logs.",
+              "next_id": "phone_request"
+            },
+            {
+              "text": "Say: 'I only texted her to ask about our shared phone bill.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: 'No contact' means absolutely NO contact, regardless of the reason. You just confessed to violating the order.",
+              "next_id": "phone_request"
+            },
+            {
+              "text": "Say: 'It was an accident, auto-dial called her!'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: Even if true, police rarely believe this excuse on the street. They will arrest you and let the judge sort it out. Silence is better.",
+              "next_id": "phone_request"
+            },
+            {
+              "text": "Say: 'She texted me first! I was just replying.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: The order applies to YOU, not her. Even if she initiates contact, if you reply, you violate the order and will go to jail.",
+              "next_id": "phone_request"
+            }
+          ]
+        },
+        "phone_request": {
+          "title": "Phase 3: The Phone Search",
+          "description": "The officer points to your phone on the table. 'Unlock your phone and let me see your texts. If you didn't message her, I won't arrest you.'",
+          "choices": [
+            {
+              "text": "State explicitly: 'I do not consent to a search of my phone.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: Searching a phone requires a warrant. The officer is trying to trick you into consenting. Refuse to provide the evidence.",
+              "next_id": "the_arrest_209a"
+            },
+            {
+              "text": "Unlock the phone to prove your innocence.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL WAIVER: You gave full consent. If there is even one missed call from a week ago, they will find it and use it to charge you.",
+              "next_id": "the_arrest_209a"
+            },
+            {
+              "text": "Quickly grab the phone and start deleting texts.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL: This is Destruction of Evidence. The officer will tackle you, and they can subpoena the texts from the carrier anyway.",
+              "next_id": "the_arrest_209a"
+            },
+            {
+              "text": "Say: 'Get a warrant.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: A blunt but legally sound way to invoke your 4th Amendment rights.",
+              "next_id": "the_arrest_209a"
+            }
+          ]
+        },
+        "the_arrest_209a": {
+          "title": "Phase 4: The Mandatory Arrest",
+          "description": "Because the victim alleges a violation and you are present, the officer arrests you. 'Under MA law, if I have probable cause of a 209A violation, I have to take you in. Put your hands behind your back.'",
+          "choices": [
+            {
+              "text": "Comply peacefully, remain silent, and do not resist.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: Massachusetts has a 'preferred arrest' policy for domestic/209A calls. You cannot talk your way out of it on the street. Accept it and fight in court.",
+              "next_id": "third_party_trap"
+            },
+            {
+              "text": "Resist being handcuffed and pull away.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "DANGEROUS: You just added Resisting Arrest and Assault and Battery on a Police Officer to your charges.",
+              "next_id": "third_party_trap"
+            },
+            {
+              "text": "Yell across the coffee shop at your ex: 'Why are you doing this to me?!'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: You just made direct, intentional contact with the protected party in front of the police. You cemented the case.",
+              "next_id": "third_party_trap"
+            },
+            {
+              "text": "Beg the officer to give you a warning.",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "WAIVER: They legally cannot give warnings for 209A violations. Begging just makes you look guilty on bodycam.",
+              "next_id": "third_party_trap"
+            }
+          ]
+        },
+        "third_party_trap": {
+          "title": "Phase 5: The Third-Party Trap",
+          "description": "In the cruiser, the officer asks: 'Did you tell your buddy to message her and tell her you miss her? Because she said your friend texted her last night.'",
+          "choices": [
+            {
+              "text": "Say: 'I want my lawyer.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: 'Third-party contact' is strictly forbidden. Having someone else relay a message is exactly the same as doing it yourself under the law.",
+              "next_id": "station_interrogation_209a"
+            },
+            {
+              "text": "Say: 'I just asked him to check on her to make sure she was safe!'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: You confessed to initiating third-party contact. That is a direct violation of the restraining order.",
+              "next_id": "station_interrogation_209a"
+            },
+            {
+              "text": "Say: 'My friend did that on his own, I didn't tell him to.'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: While legally a defense, you are engaging in the interrogation. If your friend's story differs, you are caught in a lie.",
+              "next_id": "station_interrogation_209a"
+            },
+            {
+              "text": "Ask: 'Is that really illegal?'",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: Yes, it is. Don't ask questions, just invoke your rights.",
+              "next_id": "station_interrogation_209a"
+            }
+          ]
+        },
+        "station_interrogation_209a": {
+          "title": "Phase 6: The Empathy Trap",
+          "description": "At the station, the detective says, 'I know breakups are hard. I get it, you just wanted closure. Just write down your apology to her on this paper, and I'll put it in the file to show the judge you're sorry.'",
+          "choices": [
+            {
+              "text": "Refuse to write anything and demand your lawyer.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: This is a devastating trick. Writing an apology is (1) a written confession to the violation, and (2) it constitutes *further contact* which is another violation.",
+              "next_id": "booking_209a"
+            },
+            {
+              "text": "Write the apology letter.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL WAIVER: You just handed the prosecution a signed confession and committed a second crime inside the police station.",
+              "next_id": "booking_209a"
+            },
+            {
+              "text": "Say: 'I am sorry, but I won't write it down.'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "WAIVER: You confessed verbally. Apologizing implies guilt.",
+              "next_id": "booking_209a"
+            },
+            {
+              "text": "Tell the detective verbally to tell her you are sorry.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: You just attempted to use a police officer to make third-party contact. Another violation.",
+              "next_id": "booking_209a"
+            }
+          ]
+        },
+        "booking_209a": {
+          "title": "Phase 7: The Bail Commissioner",
+          "description": "The Bail Commissioner arrives. Because this is a domestic violence-related charge, bail conditions will be strict. They ask, 'If I release you, where are you going to sleep tonight?'",
+          "choices": [
+            {
+              "text": "Provide an address that is completely separate from the protected party's home, work, or school.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: To get bail, you must prove you have a stable place to go that will not risk further violations. Have a friend or family member's address ready.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Say: 'I'm going back to my apartment. She's the one who should leave.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: If the order grants her the apartment, you just announced your intention to violate the order again. You will be held without bail.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Refuse to give an address.",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: If the commissioner doesn't know where you will be, they will deem you a flight risk and hold you in jail until court.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Say: 'I'll just sleep in my car.'",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: While not a crime, homelessness makes commissioners nervous about flight risk. It's better to have a physical address.",
+              "next_id": "victory"
+            }
+          ]
+        },
+        "victory": {
+          "title": "ENCOUNTER MASTERED",
+          "description": "You survived a strict liability 209A arrest. By refusing to admit fault or provide digital access, your lawyer can challenge the 'intent' and 'knowledge' aspects of the violation in court.",
+          "choices": []
+        }
+      }
+    },
+    "distribution_class_b": {
+      "id": "distribution_class_b",
+      "title": "Distribution of Class B Drugs",
+      "description": "Handling undercover observations, the 'just sharing' trap, and high-stakes police interrogation for drug sales.",
+      "phases": {
+        "start": {
+          "title": "Phase 1: The Hand-to-Hand Stop",
+          "description": "You are hanging out on a street corner in Downtown Crossing. Plainclothes BPD officers quickly approach, flash their badges, and separate you from the person you were just talking to. 'We just saw a hand-to-hand exchange. What did you just sell him?'",
+          "choices": [
+            {
+              "text": "State clearly: 'Am I being detained? I invoke my 5th Amendment right to remain silent.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: They are building a felony Distribution case. Your silence prevents you from making any admissions about the exchange while asserting your rights.",
+              "next_id": "the_sharing_trap"
+            },
+            {
+              "text": "Say: 'I didn't sell anything! I was just giving him a high-five.'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: If they have video surveillance or the other person testifies otherwise, this lie becomes 'consciousness of guilt' evidence.",
+              "next_id": "the_sharing_trap"
+            },
+            {
+              "text": "Say: 'I just owed him some money, I was paying him back.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: You just admitted to a transaction. If they find drugs on him, your story falls apart and ties you directly to the deal.",
+              "next_id": "the_sharing_trap"
+            },
+            {
+              "text": "Turn and run into the nearest subway station.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "DANGEROUS: Flight is admissible as evidence of guilt and guarantees a violent tackle, arrest, and additional charges.",
+              "next_id": "the_sharing_trap"
+            }
+          ]
+        },
+        "the_sharing_trap": {
+          "title": "Phase 2: The 'Just Sharing' Trap",
+          "description": "The officer says, 'Look, we found a couple of Adderall pills on him. If you just gave them to your buddy to help him study, that's not a big deal. Did he pay you for them?'",
+          "choices": [
+            {
+              "text": "Remain completely silent.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: This is a classic legal trap. In Massachusetts, 'Distribution' does not require money to change hands. Sharing drugs is legally identical to selling them.",
+              "next_id": "the_money_search"
+            },
+            {
+              "text": "Say: 'No, I just gave them to him for free.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: You just fully confessed to Distribution of a Class B substance. Giving drugs away for free is still a felony.",
+              "next_id": "the_money_search"
+            },
+            {
+              "text": "Say: 'Those aren't mine, I don't know where he got them.'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: Engaging in the interrogation gives them more material to twist. Silence is always safer than a denial.",
+              "next_id": "the_money_search"
+            },
+            {
+              "text": "Say: 'He asked me for them, I didn't offer!'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: Another confession. It doesn't matter who initiated the transaction.",
+              "next_id": "the_money_search"
+            }
+          ]
+        },
+        "the_money_search": {
+          "title": "Phase 3: The Search for Proceeds",
+          "description": "The officer pats you down and pulls a wad of cash out of your pocket. 'Three hundred dollars in twenties? You're definitely dealing. Where's the rest of your stash?'",
+          "choices": [
+            {
+              "text": "State: 'I do not consent to any searches. I want my lawyer.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: Cash is circumstantial evidence of distribution. By refusing consent, your lawyer can later argue the search was illegal and try to get the cash suppressed.",
+              "next_id": "the_informant_bluff"
+            },
+            {
+              "text": "Say: 'I just cashed my paycheck today, check my bank!'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: Explaining the money engages you in the interrogation. Let your lawyer use your bank records in court, not on the street.",
+              "next_id": "the_informant_bluff"
+            },
+            {
+              "text": "Say: 'That's my rent money, give it back!'",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: Protesting the seizure won't stop them (they will use civil asset forfeiture). Remaining silent and fighting it in court is the only way.",
+              "next_id": "the_informant_bluff"
+            },
+            {
+              "text": "Try to snatch the money back from the officer's hand.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "DANGEROUS: Assault on a Police Officer. You will go to jail regardless of the drug charges.",
+              "next_id": "the_informant_bluff"
+            }
+          ]
+        },
+        "the_informant_bluff": {
+          "title": "Phase 4: The Buyer's Confession Bluff",
+          "description": "The second officer walks over and says, 'Your buddy just flipped on you. He gave us a written statement saying he buys from you every week. Game over.'",
+          "choices": [
+            {
+              "text": "Maintain absolute silence.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: Police are legally allowed to lie about what accomplices or buyers said. Do not panic and confess based on a bluff.",
+              "next_id": "the_arrest_distribution"
+            },
+            {
+              "text": "Yell: 'He's a liar! He buys from someone else!'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: You just admitted you know he buys drugs, putting yourself in the middle of a drug conspiracy.",
+              "next_id": "the_arrest_distribution"
+            },
+            {
+              "text": "Say: 'Well he sold to ME last week!'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: You just confessed to purchasing/possessing Class B drugs out of spite. They will charge you with that instead.",
+              "next_id": "the_arrest_distribution"
+            },
+            {
+              "text": "Ask: 'Can I see the statement he wrote?'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: Asking questions shows you are cracking under pressure. They will say 'no' and keep pressing you.",
+              "next_id": "the_arrest_distribution"
+            }
+          ]
+        },
+        "the_arrest_distribution": {
+          "title": "Phase 5: Arrest & Phone Seizure",
+          "description": "You are arrested for Distribution of Class B. Before putting you in the cruiser, the officer points to your phone. 'Unlock this. If there are no text messages about selling, we'll know he was lying.'",
+          "choices": [
+            {
+              "text": "State clearly: 'I do not consent to a search of my phone.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: A cell phone search requires a warrant (Riley v. California). Never voluntarily unlock your phone. Text messages are the #1 way Distribution cases are proven.",
+              "next_id": "the_station_deal"
+            },
+            {
+              "text": "Unlock the phone to show you have nothing to hide.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: Even an ambiguous text like 'Can you come through?' from a month ago can be twisted into a Distribution conspiracy.",
+              "next_id": "the_station_deal"
+            },
+            {
+              "text": "Say: 'I forgot my passcode.'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: Don't lie. Simply asserting your 4th Amendment rights is perfectly legal and cannot be used against you.",
+              "next_id": "the_station_deal"
+            },
+            {
+              "text": "Try to step on the phone to break it.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL: Destruction of Evidence. You will face additional felony charges.",
+              "next_id": "the_station_deal"
+            }
+          ]
+        },
+        "the_station_deal": {
+          "title": "Phase 6: The Controlled Delivery Trap",
+          "description": "At the station, narcotics detectives offer a deal. 'Distribution is heavy time. Tell us who your supplier is, and set up a buy with them right now. If you do, we rip up your paperwork.'",
+          "choices": [
+            {
+              "text": "Say: 'I want my lawyer to negotiate any cooperation agreements.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: Never act as a Confidential Informant without a lawyer drafting an immunity agreement. Police often trick suspects into setting up dealers, then charge the suspect anyway.",
+              "next_id": "booking_bail_dist"
+            },
+            {
+              "text": "Give them your supplier's name to get out of trouble.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: You just confessed to buying drugs from a supplier, cementing your own guilt with no written guarantee of immunity.",
+              "next_id": "booking_bail_dist"
+            },
+            {
+              "text": "Say: 'I'll do it if you let me go home right now.'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: Trying to negotiate yourself is dangerous. You are admitting you have the connections necessary to be a dealer.",
+              "next_id": "booking_bail_dist"
+            },
+            {
+              "text": "Lie and give them the name of someone you don't like.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL: Providing false information to a police investigation is a crime and will instantly ruin your credibility in court.",
+              "next_id": "booking_bail_dist"
+            }
+          ]
+        },
+        "booking_bail_dist": {
+          "title": "Phase 7: Bail & Property",
+          "description": "The Bail Commissioner is setting your bail. The police are keeping your $300 cash as 'evidence.'",
+          "choices": [
+            {
+              "text": "Answer the Bail Commissioner's questions truthfully about your job and address, and let the lawyer handle the cash later.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: Secure your release first. Your lawyer can file a motion for the return of property later. Don't fight for the cash in the booking room.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Refuse to answer bail questions until they give your money back.",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: You will just be held in jail until your arraignment. The Bail Commissioner doesn't control evidence.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Tell the Bail Commissioner: 'I need that money to pay my rent, it's not drug money!'",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: The Bail Commissioner isn't the judge. Making defensive statements about the crime during booking is a bad habit.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Say: 'Fine, keep the cash, just let me go.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "WAIVER: Telling them to keep it sounds like you are conceding it was drug proceeds. Just say nothing about the money.",
+              "next_id": "victory"
+            }
+          ]
+        },
+        "victory": {
+          "title": "ENCOUNTER MASTERED",
+          "description": "You survived a Distribution sting. By refusing the 'sharing' trap and protecting your phone, you severely limited the prosecution's evidence.",
+          "choices": []
+        }
+      }
+    },
+    "fugitive_from_justice": {
+      "id": "fugitive_from_justice",
+      "title": "Fugitive from Justice (Out-of-State Warrant)",
+      "description": "Navigating a traffic stop that turns into an out-of-state extradition nightmare, avoiding identity traps, and waiver forms.",
+      "phases": {
+        "start": {
+          "title": "Phase 1: The Routine Stop",
+          "description": "You are pulled over in Boston for a broken taillight. The officer takes your ID, goes to his cruiser, and comes back 10 minutes later with his hand on his holster. 'Step out of the car. Turn around and put your hands behind your back.'",
+          "choices": [
+            {
+              "text": "Comply silently, make no sudden movements, and do exactly as told.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: The officer just got a warrant hit. They treat all felony warrants as highly dangerous. Compliance ensures your physical survival.",
+              "next_id": "the_warrant_reveal"
+            },
+            {
+              "text": "Ask: 'Why? I just have a broken taillight!' and refuse to move.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "DANGEROUS: Refusing to exit when an officer knows you have a warrant will result in you being forcibly dragged from the car.",
+              "next_id": "the_warrant_reveal"
+            },
+            {
+              "text": "Keep your hands on the wheel and say: 'I know my rights, you need a reason.'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: An active warrant is the ultimate reason. Delaying compliance escalates the tension rapidly.",
+              "next_id": "the_warrant_reveal"
+            },
+            {
+              "text": "Put the car in drive and flee.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: You will be chased, caught, and charged with multiple new felonies in MA, compounding your out-of-state problems.",
+              "next_id": "the_warrant_reveal"
+            }
+          ]
+        },
+        "the_warrant_reveal": {
+          "title": "Phase 2: The Warrant & Identity Trap",
+          "description": "You are handcuffed. The officer says, 'You have a full-extradition felony warrant out of New York for Burglary. Are you the John Doe who used to live in Albany?'",
+          "choices": [
+            {
+              "text": "State: 'I invoke my right to remain silent and I want my attorney.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: Do not confirm your identity regarding the out-of-state crime. Sometimes warrants have similar names. Force them to prove identity through fingerprints.",
+              "next_id": "the_underlying_crime"
+            },
+            {
+              "text": "Say: 'Yes, but that was a misunderstanding, I didn't burglarize anything!'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: You just confirmed you are the target of the warrant and placed yourself in the jurisdiction of the crime.",
+              "next_id": "the_underlying_crime"
+            },
+            {
+              "text": "Say: 'I've never been to Albany in my life!'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: If you are lying, it will be used against you. If it's the truth, silence is still better—let your lawyer clear up the mistaken identity.",
+              "next_id": "the_underlying_crime"
+            },
+            {
+              "text": "Give a fake name.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL: You already gave them your real ID. Lying now adds a charge of Providing False Information.",
+              "next_id": "the_underlying_crime"
+            }
+          ]
+        },
+        "the_underlying_crime": {
+          "title": "Phase 3: Interrogation on the Underlying Crime",
+          "description": "In the cruiser, the officer says, 'NY PD wants to know where the stolen goods are. If you tell me, I'll let them know you cooperated and maybe they'll go easy on extradition.'",
+          "choices": [
+            {
+              "text": "Remain completely silent.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: The MA police officer has no power over a NY prosecutor. This is an interrogation for another state's case. Shut it down.",
+              "next_id": "extradition_waiver"
+            },
+            {
+              "text": "Say: 'I don't have any stolen goods.'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "WAIVER: You are answering questions about the crime. Even denials can be twisted if your story changes later.",
+              "next_id": "extradition_waiver"
+            },
+            {
+              "text": "Say: 'I already gave them back to the owner.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: You just confessed to the underlying felony of Burglary/Larceny to an out-of-state officer.",
+              "next_id": "extradition_waiver"
+            },
+            {
+              "text": "Ask: 'What exactly does the warrant say I stole?'",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: Asking questions shows you are willing to talk. The officer will use this to keep digging.",
+              "next_id": "extradition_waiver"
+            }
+          ]
+        },
+        "extradition_waiver": {
+          "title": "Phase 4: The Extradition Waiver (Station)",
+          "description": "At the MA police station, they hand you a form. 'This is a Waiver of Extradition. Sign this, and NY will come pick you up in a few days. Don't sign it, and you sit in our jail for 30 days fighting it.'",
+          "choices": [
+            {
+              "text": "State: 'I will not sign anything without consulting my lawyer first.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: Extradition law is complex. Sometimes fighting extradition forces the other state to drop the charges if they don't want to pay to transport you. Let a lawyer decide.",
+              "next_id": "governor_warrant"
+            },
+            {
+              "text": "Sign it immediately to get it over with.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: You waived your right to a hearing. You surrendered all your leverage to force the demanding state to prove their paperwork is valid.",
+              "next_id": "governor_warrant"
+            },
+            {
+              "text": "Rip the paper up.",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: Theatrical resistance achieves nothing. Just hand it back unsigned.",
+              "next_id": "governor_warrant"
+            },
+            {
+              "text": "Ask: 'If I sign it, do I get bail here?'",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: Fugitives from justice are rarely granted bail in the holding state, regardless of whether they sign. Don't negotiate without a lawyer.",
+              "next_id": "governor_warrant"
+            }
+          ]
+        },
+        "governor_warrant": {
+          "title": "Phase 5: The Fingerprint Verification",
+          "description": "Because you won't sign, the officers force you to the fingerprint machine. 'We're going to digitally send your prints to NY to prove you're the guy.'",
+          "choices": [
+            {
+              "text": "Comply with the fingerprinting process silently.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: You have no 4th Amendment right to refuse fingerprinting during a lawful booking. Fighting it leads to Assault charges.",
+              "next_id": "the_hold"
+            },
+            {
+              "text": "Clench your fists and refuse to let them take your prints.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "DANGEROUS: They will use physical force to uncurl your fingers, resulting in injury and Resisting Arrest charges.",
+              "next_id": "the_hold"
+            },
+            {
+              "text": "Say: 'My prints won't match, I swear!'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "WAIVER: Stop talking about your identity or the case. Let the prints do the talking.",
+              "next_id": "the_hold"
+            },
+            {
+              "text": "Try to smear the ink/digital scanner.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL: This is interfering with police duties. They will just hold you longer and force it eventually.",
+              "next_id": "the_hold"
+            }
+          ]
+        },
+        "the_hold": {
+          "title": "Phase 6: The Bail Commissioner",
+          "description": "The Bail Commissioner arrives. 'You are charged as a Fugitive from Justice. I have to hold you without bail until you see a judge on Monday.'",
+          "choices": [
+            {
+              "text": "Say: 'I understand. I need to use the phone to call my family to hire a lawyer.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: Fugitive warrants usually have 'no bail' holds placed by the demanding state. Accept it and focus your energy on getting legal representation.",
+              "next_id": "court_arraignment"
+            },
+            {
+              "text": "Argue: 'You can't hold me, the crime was in NY, not here!'",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: The Uniform Criminal Extradition Act gives MA full authority to hold you. Arguing law with the commissioner is pointless.",
+              "next_id": "court_arraignment"
+            },
+            {
+              "text": "Beg the commissioner to let you go home for the weekend.",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "WAIVER: They legally cannot release you on a full-extradition felony warrant. Save your breath.",
+              "next_id": "court_arraignment"
+            },
+            {
+              "text": "Threaten to sue the Bail Commissioner.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "RISKY: Empty threats achieve nothing and guarantee you get the worst cell in the booking area.",
+              "next_id": "court_arraignment"
+            }
+          ]
+        },
+        "court_arraignment": {
+          "title": "Phase 7: The MA Arraignment",
+          "description": "On Monday, you are in a MA court. The judge asks: 'Are you going to waive rendition and let NY come get you, or are we scheduling an Identity Hearing?'",
+          "choices": [
+            {
+              "text": "Let your appointed or hired lawyer answer the judge.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: Never speak directly to the judge if you have counsel. Extradition strategy is highly technical. Let your lawyer do their job.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Speak over your lawyer: 'I waive it, just get me out of here!'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: You just surrendered. NY might not have had the budget to come get you, but now you made it easy for them.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Yell: 'I'm innocent of the NY charges!'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "WAIVER: The MA judge doesn't care if you are innocent. They only care if you are the person named in the warrant. Don't discuss facts of the case.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Ask the judge for bail.",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: Your lawyer should be the one arguing for bail based on specific statutory arguments, not you.",
+              "next_id": "victory"
+            }
+          ]
+        },
+        "victory": {
+          "title": "ENCOUNTER MASTERED",
+          "description": "You survived a fugitive warrant without confessing to the underlying crime or prematurely waiving your extradition rights. The fight now moves to court.",
+          "choices": []
+        }
+      }
+    },
+    "larceny": {
+      "id": "larceny",
+      "title": "Larceny (Over $1200 / Felony)",
+      "description": "Dealing with stolen property accusations, the 'I found it' trap, and navigating felony value thresholds in Massachusetts.",
+      "phases": {
+        "start": {
+          "title": "Phase 1: The Street Approach",
+          "description": "You are sitting at a bus stop holding a high-end laptop. Two officers approach you. 'We just got a call about a stolen laptop from the cafe down the street. That matches the description. Where did you get it?'",
+          "choices": [
+            {
+              "text": "State clearly: 'Am I detained? I invoke my right to remain silent.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: You are under investigation for Larceny. Silence protects you from making inconsistent statements about how you acquired the item.",
+              "next_id": "the_found_it_trap"
+            },
+            {
+              "text": "Say: 'It's mine, I've had it for years!'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: If it's not yours and they prove it via serial number, you have just lied to police and shown 'consciousness of guilt'.",
+              "next_id": "the_found_it_trap"
+            },
+            {
+              "text": "Say: 'I bought it off a guy on Craigslist 10 minutes ago.'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: A common, easily disproven lie. Even if true, admitting you bought stolen goods can lead to a 'Receiving Stolen Property' charge.",
+              "next_id": "the_found_it_trap"
+            },
+            {
+              "text": "Put the laptop on the bench and walk away quickly.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "DANGEROUS: Fleeing is evidence of guilt. They will chase you and arrest you for Larceny and Evading.",
+              "next_id": "the_found_it_trap"
+            }
+          ]
+        },
+        "the_found_it_trap": {
+          "title": "Phase 2: The 'Found It' Trap",
+          "description": "The officer says, 'Look, if you just found it on a table and picked it up so nobody else would take it, that's not stealing. Just tell me you found it and we'll return it.'",
+          "choices": [
+            {
+              "text": "Maintain your silence.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: This is a trap. In MA, 'Larceny by finding' is a crime if you pick up property knowing you intend to permanently deprive the owner of it. Don't admit to taking it.",
+              "next_id": "the_serial_check"
+            },
+            {
+              "text": "Say: 'Yeah, I found it on a table, I was looking for the owner!'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: You just confessed to taking the item. They will not believe you were looking for the owner. You will be arrested.",
+              "next_id": "the_serial_check"
+            },
+            {
+              "text": "Say: 'I didn't take anything from a cafe.'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "WAIVER: You are engaging in the interrogation. Denials can be used against you if camera footage proves otherwise.",
+              "next_id": "the_serial_check"
+            },
+            {
+              "text": "Ask: 'If I give it to you, can I leave?'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: Negotiating the return of stolen property is an implicit admission that you took it.",
+              "next_id": "the_serial_check"
+            }
+          ]
+        },
+        "the_serial_check": {
+          "title": "Phase 3: The Serial Number Check",
+          "description": "The officer reaches for the laptop. 'I just need to look at the bottom to check the serial number.'",
+          "choices": [
+            {
+              "text": "State clearly: 'I do not consent to a search of my property.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: While they may seize it anyway based on 'reasonable suspicion', expressly denying consent preserves your 4th Amendment rights for a suppression hearing.",
+              "next_id": "the_value_arrest"
+            },
+            {
+              "text": "Hand it over voluntarily.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "WAIVER: Voluntary consent destroys your legal shield. You just handed them the evidence they need.",
+              "next_id": "the_value_arrest"
+            },
+            {
+              "text": "Hold it tight and refuse to let go.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "DANGEROUS: Physical resistance is Assault/Resisting Arrest. State your rights verbally, never physically.",
+              "next_id": "the_value_arrest"
+            },
+            {
+              "text": "Say: 'You can look at it, but don't turn it on.'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "WAIVER: Conditional consent is still consent. They will find the serial number and use it.",
+              "next_id": "the_value_arrest"
+            }
+          ]
+        },
+        "the_value_arrest": {
+          "title": "Phase 4: The Arrest & Value Determination",
+          "description": "The serial number matches. You are arrested. The officer says, 'This is a MacBook Pro. That's easily over $1,200, which makes this a felony Larceny. You're in big trouble.'",
+          "choices": [
+            {
+              "text": "Say nothing. Let the prosecution prove the value in court.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: In MA, Larceny over $1200 is a felony; under is a misdemeanor. Never admit to the value or age of the item.",
+              "next_id": "the_restitution_trap"
+            },
+            {
+              "text": "Say: 'No way, it's an old model, it's worth maybe $500!'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: You just admitted to stealing it by arguing over the price. You confessed to misdemeanor Larceny.",
+              "next_id": "the_restitution_trap"
+            },
+            {
+              "text": "Say: 'I didn't know how much it was worth.'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "WAIVER: Ignorance of value is not a defense, but you just implicitly admitted to taking it.",
+              "next_id": "the_restitution_trap"
+            },
+            {
+              "text": "Say: 'I'll buy them a new one if you let me go!'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: An offer of restitution to police is a highly admissible confession of guilt.",
+              "next_id": "the_restitution_trap"
+            }
+          ]
+        },
+        "the_restitution_trap": {
+          "title": "Phase 5: The Miranda Interrogation",
+          "description": "In the interrogation room, the detective reads Miranda. 'Look, the victim is a college student. She lost all her term papers. Just tell us you took it, apologize, and we'll tell the judge you were cooperative.'",
+          "choices": [
+            {
+              "text": "Say: 'I am invoking my right to remain silent and I want my lawyer.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: Police use empathy to break suspects down. Your apology does not help you legally; it seals a felony conviction.",
+              "next_id": "the_accomplice_bluff"
+            },
+            {
+              "text": "Say: 'I'm sorry, I didn't know it was a student's laptop.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: You just confessed. The trial is effectively over.",
+              "next_id": "the_accomplice_bluff"
+            },
+            {
+              "text": "Say: 'Can I write her an apology letter without admitting anything?'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: There is no such thing. An apology implies guilt. Any letter you write goes straight to the prosecutor.",
+              "next_id": "the_accomplice_bluff"
+            },
+            {
+              "text": "Cry and show remorse.",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: Crying doesn't legally waive your rights, but it encourages them to push harder for a confession.",
+              "next_id": "the_accomplice_bluff"
+            }
+          ]
+        },
+        "the_accomplice_bluff": {
+          "title": "Phase 6: The Accomplice Bluff",
+          "description": "The detective tries one last tactic. 'We have camera footage showing you and another guy. Who were you working with? Tell us, or you take the felony charge alone.'",
+          "choices": [
+            {
+              "text": "Maintain absolute silence and demand counsel.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: They might not have any video. Even if they do, naming an accomplice creates a 'Conspiracy' charge, which is a separate felony.",
+              "next_id": "booking_larceny"
+            },
+            {
+              "text": "Say: 'I was alone! There was no other guy!'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: The bluff worked perfectly. You avoided a conspiracy charge by confessing that you committed the Larceny alone.",
+              "next_id": "booking_larceny"
+            },
+            {
+              "text": "Give them a fake name for the 'other guy'.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL: Lying/Misleading a police investigation adds more charges.",
+              "next_id": "booking_larceny"
+            },
+            {
+              "text": "Ask to see the video footage.",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: They don't have to show you the evidence during interrogation. Asking just proves you are engaged in their games.",
+              "next_id": "booking_larceny"
+            }
+          ]
+        },
+        "booking_larceny": {
+          "title": "Phase 7: The Final Booking Question",
+          "description": "During booking, the officer asks: 'Are you employed right now? How do you support yourself?'",
+          "choices": [
+            {
+              "text": "Provide truthful employment details to the booking officer/Bail Commissioner.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: Stable employment makes you less of a flight risk and helps secure bail. It is safe to answer standard biographical questions.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Say: 'I steal things to pay my rent, obviously.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: Never use sarcasm in a police station. Sarcasm doesn't translate to police reports; it just looks like a confession.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Refuse to answer.",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: Refusing basic bio questions often leads to being held in a cell instead of being released on bail.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Lie and say you make 100k a year.",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: Lying during booking is a bad idea, and claiming high income might make them set a higher cash bail.",
+              "next_id": "victory"
+            }
+          ]
+        },
+        "victory": {
+          "title": "ENCOUNTER MASTERED",
+          "description": "You survived a felony Larceny interrogation. By not admitting to taking the item or its value, you preserved crucial defenses for trial.",
+          "choices": []
+        }
+      }
+    },
+    "assault_dangerous_weapon": {
+      "id": "assault_dangerous_weapon",
+      "title": "Assault by Means of a Dangerous Weapon",
+      "description": "Navigating accusations of using mundane objects as weapons, avoiding the self-defense trap, and handling felony violence charges.",
+      "phases": {
+        "start": {
+          "title": "Phase 1: The Accusation",
+          "description": "You are standing outside a bar after a heated argument inside. Police arrive, approach you, and say: 'A guy inside says you just threatened to smash his head in with a beer bottle. What happened?'",
+          "choices": [
+            {
+              "text": "State clearly: 'Am I being detained? I invoke my 5th Amendment right to remain silent.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: Assault by Means of a Dangerous Weapon (ABDW) is a felony. It does not require hitting them; just putting them in fear with an object. Absolute silence is required.",
+              "next_id": "the_object_trap"
+            },
+            {
+              "text": "Say: 'I never swung it at him, I was just holding it!'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: You just confessed to holding the object during the altercation. In MA, simply displaying a dangerous object during an argument can satisfy the charge.",
+              "next_id": "the_object_trap"
+            },
+            {
+              "text": "Say: 'He started it! He got in my face first!'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: Claiming he started it admits you were involved in an altercation. You are doing the prosecutor's job for them.",
+              "next_id": "the_object_trap"
+            },
+            {
+              "text": "Ask: 'Where is he? Let me talk to him to clear this up.'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: Trying to confront the accuser in front of the police will immediately lead to you being tackled and arrested for witness intimidation or further assault.",
+              "next_id": "the_object_trap"
+            }
+          ]
+        },
+        "the_object_trap": {
+          "title": "Phase 2: The Object Trap",
+          "description": "The officer says, 'Listen, if you didn't have a bottle, let me search your jacket and bag to prove you don't have one on you. If it's clear, you can go.'",
+          "choices": [
+            {
+              "text": "State explicitly: 'I do not consent to any searches.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: Never consent. If they find *any* bottle or heavy object, they will use it as the 'Dangerous Weapon'. Force them to rely on their own probable cause.",
+              "next_id": "the_self_defense_trap"
+            },
+            {
+              "text": "Take your jacket off and empty your bag to prove you are unarmed.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "WAIVER: Voluntary consent. If you have anything remotely heavy or sharp (keys, a heavy pen, a thermos), they can claim it was the weapon used.",
+              "next_id": "the_self_defense_trap"
+            },
+            {
+              "text": "Say: 'I threw my bottle in the trash inside.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: You just admitted you had the exact weapon the victim accused you of having. You will be arrested immediately.",
+              "next_id": "the_self_defense_trap"
+            },
+            {
+              "text": "Ask: 'Do you have a warrant to search me?'",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: They don't need a warrant for a Terry Frisk if they suspect you have a weapon. Explicitly stating 'I do not consent' is the proper legal defense.",
+              "next_id": "the_self_defense_trap"
+            }
+          ]
+        },
+        "the_self_defense_trap": {
+          "title": "Phase 3: The Arrest & Self-Defense Trap",
+          "description": "The officer arrests you based on the victim's statement. While handcuffing you, he says, 'Look, if he threatened you first and you grabbed the bottle for self-defense, just tell me. Self-defense isn't a crime.'",
+          "choices": [
+            {
+              "text": "Say: 'I want my lawyer. I will not answer any questions.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: This is an interrogation trap. To claim self-defense, you must admit to committing the Assault. Police do not grant self-defense immunity on the street; judges do.",
+              "next_id": "miranda_station"
+            },
+            {
+              "text": "Say: 'Yes, he was huge! I had to protect myself!'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: You just gave a full confession to the felony of ABDW. You admitted to using the weapon. The police will happily let the DA sort out the self-defense claim later.",
+              "next_id": "miranda_station"
+            },
+            {
+              "text": "Say: 'I didn't even touch him!'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "WAIVER: ABDW does not require touching. Swiping at someone or raising an object threateningly is enough. Denying 'touching' doesn't help you.",
+              "next_id": "miranda_station"
+            },
+            {
+              "text": "Nod in agreement but say nothing.",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "WAIVER: Nodding is an affirmative response. You just non-verbally confessed to using the bottle in self-defense.",
+              "next_id": "miranda_station"
+            }
+          ]
+        },
+        "miranda_station": {
+          "title": "Phase 4: Station Interrogation",
+          "description": "At the station, detectives try to get a formal statement. 'The victim wants to press charges. Help us understand your side. We have cameras showing you holding the bottle.'",
+          "choices": [
+            {
+              "text": "Remain completely silent and re-invoke your right to counsel.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: Police legally lie about evidence like cameras to force confessions. Never try to 'explain your side' to detectives without a lawyer.",
+              "next_id": "dangerousness_hearing"
+            },
+            {
+              "text": "Ask to see the camera footage before you talk.",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: They have no obligation to show you evidence during an interrogation. Asking implies you will talk if they prove it.",
+              "next_id": "dangerousness_hearing"
+            },
+            {
+              "text": "Say: 'If you have cameras, you know he bumped into me first.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: You just placed yourself at the scene, engaging with the victim, effectively corroborating the victim's story.",
+              "next_id": "dangerousness_hearing"
+            },
+            {
+              "text": "Say: 'I was just drinking from it, I never threatened him.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: Another admission of having the weapon. The jury will now have to decide if your 'drinking' looked like a threat.",
+              "next_id": "dangerousness_hearing"
+            }
+          ]
+        },
+        "dangerousness_hearing": {
+          "title": "Phase 5: The Cellmate",
+          "description": "You are placed in a holding cell with another person. He asks, 'Man, the cops are fired up. Did you really try to bottle a guy?'",
+          "choices": [
+            {
+              "text": "Say: 'I don't want to talk about my case.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: Jailhouse snitches will trade your confession for a deal on their own case, or it might be an undercover officer. Say nothing.",
+              "next_id": "the_bail_commissioner_abdw"
+            },
+            {
+              "text": "Say: 'No way, the guy is making it up.'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: Discussing the case at all opens you up to questioning. Simply establish a firm boundary.",
+              "next_id": "the_bail_commissioner_abdw"
+            },
+            {
+              "text": "Say: 'He deserved it, but I missed.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: A full confession to the intent and the act. The informant will testify against you at trial.",
+              "next_id": "the_bail_commissioner_abdw"
+            },
+            {
+              "text": "Ask him what he is in for to change the subject.",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: Engaging in conversation keeps the door open for him to circle back to your charges.",
+              "next_id": "the_bail_commissioner_abdw"
+            }
+          ]
+        },
+        "the_bail_commissioner_abdw": {
+          "title": "Phase 6: The Bail Commissioner & Dangerousness",
+          "description": "The Bail Commissioner arrives. Because ABDW is a violent felony, they may seek a '58A Dangerousness Hearing' to hold you without bail for 120 days. The Commissioner asks: 'Do you have a history of violence?'",
+          "choices": [
+            {
+              "text": "Answer: 'You have my CORI (record) in front of you. I decline to answer further without counsel.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: Do not lie, but do not volunteer explanations about past charges. The commissioner has your record. Stand firm on needing a lawyer.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Lie and say: 'No, I've never been in a fight.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "DANGEROUS: If you have any past assault charges, lying guarantees you will be held without bail as untrustworthy.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Say: 'Only when people mess with me.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: You just confirmed to the Bail Commissioner that you are a danger to the public. You will be held without bail.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Refuse to give your name or address to the Commissioner.",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: Refusing biographical questions completely will halt the bail process and you will remain in a cell.",
+              "next_id": "victory"
+            }
+          ]
+        },
+        "victory": {
+          "title": "ENCOUNTER MASTERED",
+          "description": "You survived a violent felony accusation by refusing to admit to holding the weapon or pleading self-defense on the street. Your lawyer has a clean slate for trial.",
+          "choices": []
+        }
+      }
+    },
+    "receiving_stolen_goods": {
+      "id": "receiving_stolen_goods",
+      "title": "Buying, Receiving or Concealing Stolen Goods",
+      "description": "Handling stolen property investigations, the 'I bought it online' trap, and proving 'knowledge' of the theft.",
+      "phases": {
+        "start": {
+          "title": "Phase 1: The Suspect Item Stop",
+          "description": "You are pulled over while riding a $2,500 electric bike. The officer approaches. 'We've had a string of thefts of this exact e-bike model in the area. Where did you get this?'",
+          "choices": [
+            {
+              "text": "State: 'Am I being detained, or am I free to go? I decline to answer questions.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: To convict you, the state must prove you possessed the item *and* knew it was stolen. Silence prevents you from making statements they can use to prove your knowledge.",
+              "next_id": "the_bargain_trap"
+            },
+            {
+              "text": "Say: 'I bought it off Facebook Marketplace this morning.'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: If it is stolen, you just admitted to receiving it recently. Police will use this to press you on who sold it and how much you paid.",
+              "next_id": "the_bargain_trap"
+            },
+            {
+              "text": "Say: 'It's my friend's bike, I'm just borrowing it.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: If the bike is stolen, you've just admitted to possessing it and provided a weak excuse. They will arrest you and demand your friend's name.",
+              "next_id": "the_bargain_trap"
+            },
+            {
+              "text": "Get off the bike and start walking away.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "DANGEROUS: Fleeing from property creates instant 'consciousness of guilt' and leads to an immediate arrest.",
+              "next_id": "the_bargain_trap"
+            }
+          ]
+        },
+        "the_bargain_trap": {
+          "title": "Phase 2: The Bargain Trap",
+          "description": "The officer says, 'These bikes retail for $2,500. Be honest with me. Did you buy it for a couple hundred bucks from a guy on the street? If you got a crazy deal, you had to know it was hot.'",
+          "choices": [
+            {
+              "text": "Maintain your silence and request a lawyer.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: The 'crazy deal' trap is how they prove knowledge. In MA, buying high-value goods for suspiciously low prices is legal proof that you *knew* or *should have known* it was stolen.",
+              "next_id": "serial_number_seizure"
+            },
+            {
+              "text": "Say: 'I paid $300 for it! How was I supposed to know?'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: You just confessed. Paying $300 for a $2,500 item proves 'willful blindness'. You are guilty of Receiving Stolen Goods.",
+              "next_id": "serial_number_seizure"
+            },
+            {
+              "text": "Say: 'I paid full retail price for it!'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: If you can't produce a receipt for $2,500, they will prove you lied to them, which establishes guilt.",
+              "next_id": "serial_number_seizure"
+            },
+            {
+              "text": "Say: 'I didn't buy it, I found it in the trash.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: Nobody throws away a working $2,500 e-bike. This absurd lie proves you are concealing its true origin.",
+              "next_id": "serial_number_seizure"
+            }
+          ]
+        },
+        "serial_number_seizure": {
+          "title": "Phase 3: The Serial Number Check",
+          "description": "The officer says, 'I'm checking the serial number on the frame against the national stolen database.'",
+          "choices": [
+            {
+              "text": "Step away from the bike and state: 'I do not consent to a search or seizure of my property.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: Checking a serial number usually involves manipulating the item (turning it over), which constitutes a 4th Amendment search. State non-consent to preserve your rights.",
+              "next_id": "the_thief_bluff"
+            },
+            {
+              "text": "Help the officer flip the bike over to find the number.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "WAIVER: Voluntary consent. You just assisted in your own arrest if the bike comes back stolen.",
+              "next_id": "the_thief_bluff"
+            },
+            {
+              "text": "Try to scratch the serial number off quickly with your keys.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL: Destruction of evidence and a separate felony for altering/removing a serial number. Instant arrest.",
+              "next_id": "the_thief_bluff"
+            },
+            {
+              "text": "Ask: 'Do you need a warrant to look at that?'",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: Asking legal questions is weaker than explicitly stating 'I do not consent.'",
+              "next_id": "the_thief_bluff"
+            }
+          ]
+        },
+        "the_thief_bluff": {
+          "title": "Phase 4: The Actual Thief Threat",
+          "description": "The bike comes back stolen. The officer arrests you. 'Since you have it, we are charging you with the actual Larceny of the bike. Unless you tell us who sold it to you right now.'",
+          "choices": [
+            {
+              "text": "Say: 'I want my lawyer.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: This is a heavy pressure tactic. 'Recent possession of stolen property' allows a jury to infer you stole it, but naming a seller without a lawyer just confesses to 'Receiving'.",
+              "next_id": "phone_access_trap"
+            },
+            {
+              "text": "Panic and give them the name of the guy who sold it to you.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: You avoided the Larceny charge, but handed them a taped confession to Buying/Receiving Stolen Goods. You will still be prosecuted.",
+              "next_id": "phone_access_trap"
+            },
+            {
+              "text": "Say: 'I stole it myself.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: Never confess to a crime. You just admitted to a felony.",
+              "next_id": "phone_access_trap"
+            },
+            {
+              "text": "Say: 'I have the Facebook messages to prove I just bought it!'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "WAIVER: You just admitted to receiving the property. They will seize your phone and use the messages against you.",
+              "next_id": "phone_access_trap"
+            }
+          ]
+        },
+        "phone_access_trap": {
+          "title": "Phase 5: The Phone Extraction",
+          "description": "At the station, they take your phone. 'If you really bought this from someone else, unlock your phone and show us the messages. We just want the real thief.'",
+          "choices": [
+            {
+              "text": "Refuse to unlock the phone and demand a warrant.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: They cannot force you to unlock your phone. The messages likely show you negotiating a suspiciously low price, which proves your guilt.",
+              "next_id": "property_receipt"
+            },
+            {
+              "text": "Unlock it and show them the messages.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: You consented. The detective will scroll up, see you asked 'Is it hot?' or paid $200 for it, and use it to convict you.",
+              "next_id": "property_receipt"
+            },
+            {
+              "text": "Say: 'I deleted the messages already.'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: Deleting evidence can lead to a 'Tampering with Evidence' charge if they recover it via forensics.",
+              "next_id": "property_receipt"
+            },
+            {
+              "text": "Say: 'My lawyer has the messages.'",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: A clever deflection, but simply invoking your 4th Amendment right not to unlock the phone is the legally correct answer.",
+              "next_id": "property_receipt"
+            }
+          ]
+        },
+        "property_receipt": {
+          "title": "Phase 6: The Property Receipt",
+          "description": "During booking, the officer hands you a 'Seized Property Receipt' for the e-bike. 'Sign this acknowledging we took the bike from your possession.'",
+          "choices": [
+            {
+              "text": "Refuse to sign the receipt.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: Signing the receipt is a written admission that the stolen item was in your physical possession. Make them prove possession at trial.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Sign it so you have proof they took it.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: You don't need proof; they do. You just signed a document admitting possession of stolen goods.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Sign it but write 'Under Duress' next to your name.",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: 'Under Duress' is a complex legal standard. Your signature is still on the paper admitting possession. Just refuse.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Ask: 'Will I get the bike back if I'm found innocent?'",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: If it's stolen, it goes back to the rightful owner. Asking this implies you believe you own it.",
+              "next_id": "victory"
+            }
+          ]
+        },
+        "victory": {
+          "title": "ENCOUNTER MASTERED",
+          "description": "You navigated the traps of stolen property laws. By maintaining silence about how you got the item and its price, the state will struggle to prove you 'knew' it was stolen.",
+          "choices": []
+        }
+      }
+    },
+    "graffiti_tagging": {
+      "id": "graffiti_tagging",
+      "title": "Damage to Property by Graffiti / Tagging",
+      "description": "Surviving alley stops, backpack searches, the 'Moniker' trap, and felony aggregation in vandalism cases.",
+      "phases": {
+        "start": {
+          "title": "Phase 1: The Alley Stop",
+          "description": "You are walking out of a dark alley at 2 AM. A BPD cruiser hits you with a spotlight. 'Hey! Hold it right there. We got fresh paint on the brick wall back there. What are you doing?'",
+          "choices": [
+            {
+              "text": "Stop, keep your hands out of your pockets, and say: 'Am I being detained?'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: They have reasonable suspicion to stop you. Comply physically, but establish your legal status immediately and invoke silence.",
+              "next_id": "the_hands_check"
+            },
+            {
+              "text": "Say: 'I was just taking a shortcut home.'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: Giving an excuse engages you in the interrogation. If you live in the opposite direction, your lie is evidence of guilt.",
+              "next_id": "the_hands_check"
+            },
+            {
+              "text": "Say: 'I didn't paint anything, I was just looking at it!'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: You just placed yourself exactly at the scene of the crime and admitted to observing it. You are their prime suspect.",
+              "next_id": "the_hands_check"
+            },
+            {
+              "text": "Sprint down the street.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "DANGEROUS: Fleeing is 'consciousness of guilt' and guarantees a foot pursuit, physical takedown, and arrest.",
+              "next_id": "the_hands_check"
+            }
+          ]
+        },
+        "the_hands_check": {
+          "title": "Phase 2: The Paint Check",
+          "description": "The officer walks up to you. 'Show me your hands. Let me see your palms and fingers.'",
+          "choices": [
+            {
+              "text": "Comply and place your hands out flat, but remain silent.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: Officers can order you to show your hands for officer safety. Refusing can lead to force. Comply physically, but do not answer any questions if they see paint.",
+              "next_id": "backpack_search"
+            },
+            {
+              "text": "Hide your hands in your pockets.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: Hiding hands is the #1 trigger for officers to draw weapons or use force, believing you have a gun.",
+              "next_id": "backpack_search"
+            },
+            {
+              "text": "Show your hands and say: 'That paint is from my art class earlier.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: You just admitted you have paint on your hands that matches the crime scene. Providing an unprovable excuse does not help.",
+              "next_id": "backpack_search"
+            },
+            {
+              "text": "Say: 'You need a warrant to look at my hands!'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: They do not need a warrant for things in 'plain view' or for a safety check. Arguing the law on the street escalates tension.",
+              "next_id": "backpack_search"
+            }
+          ]
+        },
+        "backpack_search": {
+          "title": "Phase 3: The Backpack Search",
+          "description": "The officer points to your backpack. 'I smell Krylon spray paint. Open the bag, let me see what's inside.'",
+          "choices": [
+            {
+              "text": "State clearly: 'I do not consent to a search of my bag.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: The smell of paint might give them probable cause, but explicitly denying consent forces them to justify the search to a judge later.",
+              "next_id": "the_moniker_trap"
+            },
+            {
+              "text": "Take the bag off and open it for them.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "WAIVER: Voluntary consent. If there are spray cans or paint markers inside, you just gave away your 4th Amendment rights.",
+              "next_id": "the_moniker_trap"
+            },
+            {
+              "text": "Say: 'There's only school books in there.'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: Lying to police destroys your credibility. If they search it and find paint, your lie is used as evidence.",
+              "next_id": "the_moniker_trap"
+            },
+            {
+              "text": "Hold the bag tightly and refuse to let go.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "DANGEROUS: Physical resistance turns an illegal search into a lawful arrest for Resisting/Assault.",
+              "next_id": "the_moniker_trap"
+            }
+          ]
+        },
+        "the_moniker_trap": {
+          "title": "Phase 4: The Arrest & Moniker Trap",
+          "description": "They search the bag and find spray paint. You are arrested. The officer says, 'The tag on the wall says \"GHOST\". We've seen that tag all over the city. Are you GHOST?'",
+          "choices": [
+            {
+              "text": "Say: 'I want my lawyer. I will not answer questions.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: This is the most dangerous trap in graffiti cases. Admitting to a 'moniker' allows the police to aggregate hundreds of tags across the city into one massive felony charge against you.",
+              "next_id": "the_cleanup_trap"
+            },
+            {
+              "text": "Say: 'Yeah, but I only did this one tonight.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: You confessed to the crime tonight, AND you admitted to the moniker. They will charge you for every \"GHOST\" tag in Boston.",
+              "next_id": "the_cleanup_trap"
+            },
+            {
+              "text": "Say: 'I just copy that tag because I think it looks cool.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: You admitted to doing the tag tonight. A confession is a confession.",
+              "next_id": "the_cleanup_trap"
+            },
+            {
+              "text": "Say: 'I've never heard of GHOST.'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "WAIVER: Engaging in the interrogation is a mistake. If they find the moniker in your sketchpad later, your lie proves guilt.",
+              "next_id": "the_cleanup_trap"
+            }
+          ]
+        },
+        "the_cleanup_trap": {
+          "title": "Phase 5: The 'Clean It Up' Bluff",
+          "description": "Before putting you in the cruiser, the officer points to the wall. 'Look, I hate paperwork. If you take this rag and wipe that wet paint off the wall right now, I'll let you walk.'",
+          "choices": [
+            {
+              "text": "Remain silent and refuse to wipe the wall.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: This is a devious trick. Wiping the wall is an implicit admission that you are responsible for putting the paint there. They will film you doing it, then arrest you anyway.",
+              "next_id": "blackbook_phone_search"
+            },
+            {
+              "text": "Take the rag and try to wipe the paint off.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: You just confessed to Vandalism on body camera. They will arrest you as soon as you are done cleaning their wall.",
+              "next_id": "blackbook_phone_search"
+            },
+            {
+              "text": "Say: 'I can't clean it, I didn't do it!'",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: While denying it, you are still engaging with the trap. Silence is absolute protection.",
+              "next_id": "blackbook_phone_search"
+            },
+            {
+              "text": "Ask: 'Do you promise not to arrest me if I clean it?'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: Police are legally allowed to break promises. You are negotiating your own confession.",
+              "next_id": "blackbook_phone_search"
+            }
+          ]
+        },
+        "blackbook_phone_search": {
+          "title": "Phase 6: The Digital/Sketchpad Search",
+          "description": "At the station, the 'Vandalism Task Force' detective arrives. 'We took your phone. I know you guys take photos of your work. Unlock it so I can see.'",
+          "choices": [
+            {
+              "text": "State: 'I do not consent to a search of my phone. Get a warrant.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: Vandalism detectives use phone photos, GPS metadata, and texts to build massive felony aggregation cases. Never unlock your phone for them.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Unlock the phone but say: 'There's no graffiti photos on here.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: You consented to the search. They will use forensics to recover deleted photos and check your Instagram DMs.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Say: 'I'll unlock it if my lawyer is present.'",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: While asking for a lawyer is good, your lawyer will tell you absolutely not to unlock it. Just refuse.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Give them a fake passcode.",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: Lying to impede an investigation can result in separate charges.",
+              "next_id": "victory"
+            }
+          ]
+        }
+      }
+    },
+    "person_disorderly": {
+      "id": "person_disorderly",
+      "title": "Disorderly Conduct & ID Demand",
+      "description": "Navigating a complex dispersal order, recording rights, and investigatory ID demands in a public space to generate a Saul-LM report card.",
+      "phases": {
+        "start": {
+          "title": "Phase 1: The Dispersal Order",
+          "description": "You are hanging out with friends in Boston Common, playing music. A BPD officer approaches: 'You kids are making too much noise and blocking the path. Move along or I'm locking you up for Disorderly Conduct.'",
+          "choices": [
+            {
+              "text": "State: 'We will move, but I want to document that we are just sitting here peacefully.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: You comply with the dispersal order while safely asserting your First Amendment rights.",
+              "next_id": "the_camera_block"
+            },
+            {
+              "text": "Pack up and say: 'Okay, we are leaving right now.'",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SAFE BUT SUB-OPTIMAL: You avoid arrest by complying with the order, but you miss the opportunity to document the encounter for your defense.",
+              "next_id": "start"
+            },
+            {
+              "text": "Yell back that it's a public park and you have a constitutional right to be there.",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: Under BPD Rule 103, an officer can cite you for 'Disorderly Conduct' if your behavior is deemed 'tumultuous.' Yelling escalates it.",
+              "next_id": "start"
+            },
+            {
+              "text": "Ignore the officer completely and turn the music volume up.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL: This is a direct violation of a lawful order and creates an intentional disturbance, granting immediate probable cause for a Disorderly arrest.",
+              "next_id": "start"
+            }
+          ]
+        },
+        "the_camera_block": {
+          "title": "Phase 2: The Camera Block",
+          "description": "As you pack up, you pull out your phone to record the interaction. The officer steps forward and puts his hand near your lens. 'Put the phone away. You're interfering with my duties.'",
+          "choices": [
+            {
+              "text": "Step back to maintain a safe distance and say: 'I have a First Amendment right to film you in public.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: Per BPD Rule 405, citizens have a protected right to record officers in public as long as they don't 'physically interfere.' Stepping back removes that excuse.",
+              "next_id": "id_demand"
+            },
+            {
+              "text": "Ask: 'Why can't I record?' without moving back.",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: Asking questions is fine, but failing to create physical distance allows the officer to continuously claim you are 'interfering' with their space.",
+              "next_id": "the_camera_block"
+            },
+            {
+              "text": "Put the phone away and apologize for causing trouble.",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "WAIVER: You surrendered your right to document the encounter. Video evidence is the best defense against biased policing under BPD Rule 113A.",
+              "next_id": "the_camera_block"
+            },
+            {
+              "text": "Push his hand away so you can get a clear shot of his face.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "DANGER: Any physical contact with an officer is 'Assault and Battery on a P.O.' Use words to assert rights, never your hands.",
+              "next_id": "the_camera_block"
+            }
+          ]
+        },
+        "id_demand": {
+          "title": "Phase 3: The ID Demand",
+          "description": "The officer is annoyed that you are recording. 'If you're going to act like a lawyer, let's see some ID. I need to make sure you don't have any open warrants.'",
+          "choices": [
+            {
+              "text": "Ask: 'Am I being legally detained for a crime, or am I free to go?'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: This forces the officer to articulate 'Reasonable Suspicion' under BPD Rule 323. If they can't, they cannot legally compel you to provide ID.",
+              "next_id": "investigatory_pressure"
+            },
+            {
+              "text": "Ask: 'Do you need my ID if I didn't do anything?'",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: While probing, this doesn't explicitly invoke the legal trigger of asking if you are 'detained' versus 'free to go' under Rule 323.",
+              "next_id": "id_demand"
+            },
+            {
+              "text": "Hand over your ID to prove you don't have any warrants.",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "WAIVER: You are not required to provide ID in a consensual encounter. Providing it gives them a 'hook' to run your name and prolong the stop.",
+              "next_id": "id_demand"
+            },
+            {
+              "text": "Turn around and run away as fast as you can.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "DANGEROUS: Flight creates 'Reasonable Suspicion' and justifies a foot pursuit and physical takedown.",
+              "next_id": "id_demand"
+            }
+          ]
+        },
+        "investigatory_pressure": {
+          "title": "Phase 4: Investigatory Pressure",
+          "description": "The officer steps closer. 'You're being very difficult. Just give me your name so we can finish this, or I'm taking you in for Disorderly right now.'",
+          "choices": [
+            {
+              "text": "State: 'I am invoking my right to remain silent.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: Under BPD Rule 332, you have a 5th Amendment right to silence. Exercising a constitutional right is not 'Disorderly Conduct'.",
+              "next_id": "backup_arrives"
+            },
+            {
+              "text": "Say: 'I would rather not give my name right now.'",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: This sounds like a preference rather than a clear invocation of your 5th Amendment rights. Officers will keep pressing.",
+              "next_id": "investigatory_pressure"
+            },
+            {
+              "text": "Start arguing loudly about Massachusetts Stop and Identify laws.",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: Arguing loudly in a public park gives the officer the 'tumultuous behavior' evidence they need to actually arrest you for Disorderly Conduct.",
+              "next_id": "investigatory_pressure"
+            },
+            {
+              "text": "Give a fake name verbally to get it over with.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL: Providing a false name to police is a separate crime. This gives them a legitimate reason to arrest you.",
+              "next_id": "investigatory_pressure"
+            }
+          ]
+        },
+        "backup_arrives": {
+          "title": "Phase 5: Escalation via Backup",
+          "description": "A second officer arrives on the scene. 'What's the problem here? Is this kid giving you trouble?' The first officer says you are refusing to identify yourself.",
+          "choices": [
+            {
+              "text": "Remain silent, keep your hands visible, and continue recording.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: You are maintaining your silence (Rule 332) and physical safety (Rule 303) while allowing the camera to act as your objective witness.",
+              "next_id": "frisk_threat"
+            },
+            {
+              "text": "Calmly tell the second officer: 'I have already invoked my right to remain silent.'",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SAFE BUT UNNECESSARY: It re-establishes your rights, but engaging in conversation breaks the silence you just invoked. Total silence is stronger.",
+              "next_id": "backup_arrives"
+            },
+            {
+              "text": "Try to plead your case to the new officer to show you are reasonable.",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "WAIVER: Engaging in 'negotiation' often leads to accidental admissions that can be used against you.",
+              "next_id": "backup_arrives"
+            },
+            {
+              "text": "Reach quickly into your pocket for your phone to call a lawyer.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: Reaching into concealed areas when backup arrives creates a massive safety threat. They may draw weapons.",
+              "next_id": "backup_arrives"
+            }
+          ]
+        },
+        "frisk_threat": {
+          "title": "Phase 6: The Frisk Threat",
+          "description": "The second officer says, 'He's acting agitated. I'm going to pat him down for officer safety to make sure he doesn't have a weapon.'",
+          "choices": [
+            {
+              "text": "State clearly: 'I do not consent to this frisk, but I will not resist.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: A 'Terry Frisk' is only for weapons. By stating you don't consent, you protect your legal rights if the officer uses this as an excuse to search your pockets.",
+              "next_id": "resolution_documentation"
+            },
+            {
+              "text": "Ask: 'Why are you touching me if I don't have weapons?'",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: Asking a question does not legally establish that you are withholding consent. You must explicitly state 'I do not consent.'",
+              "next_id": "frisk_threat"
+            },
+            {
+              "text": "Say: 'Go ahead, I don't have any weapons on me.'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "WAIVER: This is 'voluntary consent.' If you consent, they can legally search far beyond a simple pat-down.",
+              "next_id": "frisk_threat"
+            },
+            {
+              "text": "Swat his hands away as he reaches for you.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "DANGER: Physical resistance to a safety frisk immediately justifies the use of 'Non-Lethal Force' and results in an Assault charge.",
+              "next_id": "frisk_threat"
+            }
+          ]
+        },
+        "resolution_documentation": {
+          "title": "Phase 7: Resolution & Documentation",
+          "description": "Finding no weapons and realizing you know your rights, the officers tell you to 'just get out of here.' The encounter is ending.",
+          "choices": [
+            {
+              "text": "Ask: 'Can I have both of your names and badge numbers for my records?'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: BPD Rule 306A requires officers to provide their name and ID number upon request. You need this for Saul-LM's report and any future bias complaint.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Look at the cruiser's license plate, memorize it, and walk away.",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: Good situational awareness, but getting their actual badge numbers forces direct accountability under BPD procedures.",
+              "next_id": "resolution_documentation"
+            },
+            {
+              "text": "Walk away quickly without looking back or saying anything.",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "MISSING INFO: Documentation is your protection. Without badge numbers, you have no recourse to report the harassment.",
+              "next_id": "resolution_documentation"
+            },
+            {
+              "text": "Yell a profanity at them as you walk away to have the last word.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "RISKY: Yelling insults as you leave can re-escalate the situation and give them a fresh excuse to cite you for disturbing the peace.",
+              "next_id": "resolution_documentation"
+            }
+          ]
+        },
+        "victory": {
+          "title": "ENCOUNTER MASTERED",
+          "description": "You successfully navigated a complex Disorderly Conduct trap. Your choices have been sent to the Saul-LM Debrief Room for analysis.",
+          "choices": []
+        }
+      }
+    },
+    "assault_battery_injuries": {
+      "id": "assault_battery_injuries",
+      "title": "Assault & Battery (Injuries)",
+      "description": "Handling severe A&B accusations, navigating self-defense claims with physical evidence, and dealing with EMS protocols.",
+      "phases": {
+        "start": {
+          "title": "Phase 1: The Bloody Scene",
+          "description": "You are outside a bar. A man is on the ground bleeding from his nose. BPD arrives, separates everyone, and approaches you. 'He says you just beat him up. What's your side of the story?'",
+          "choices": [
+            {
+              "text": "State: 'I invoke my 5th Amendment right to remain silent and I want my attorney.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: A&B with injuries is a serious charge. If you admit to hitting him, even in self-defense, you give them the confession they need to arrest you.",
+              "next_id": "the_blood_evidence"
+            },
+            {
+              "text": "Say: 'He swung at me first! I was just defending myself.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: You just confessed to committing the Battery. Police don't try self-defense cases on the street; they arrest you and let the judge figure it out.",
+              "next_id": "the_blood_evidence"
+            },
+            {
+              "text": "Say: 'I didn't even touch him, he fell!'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: If witnesses or cameras show otherwise, this lie becomes 'consciousness of guilt' and ruins your credibility in court.",
+              "next_id": "the_blood_evidence"
+            },
+            {
+              "text": "Walk away quickly while the officer is checking on the victim.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "DANGEROUS: Fleeing an active crime scene where you are a suspect will result in immediate pursuit and additional charges.",
+              "next_id": "the_blood_evidence"
+            }
+          ]
+        },
+        "the_blood_evidence": {
+          "title": "Phase 2: The Physical Evidence",
+          "description": "The officer points his flashlight at your shirt. 'If you didn't do anything, why do you have his blood all over your knuckles and shirt?'",
+          "choices": [
+            {
+              "text": "Maintain absolute silence.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: You are under no obligation to explain physical evidence to the police. Silence forces them to rely solely on the victim's potentially flawed testimony.",
+              "next_id": "the_witness_trap"
+            },
+            {
+              "text": "Say: 'I was trying to help him up after he fell.'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: A fabricated cover story. If the blood spatter is inconsistent with 'helping someone up', forensics will prove you lied.",
+              "next_id": "the_witness_trap"
+            },
+            {
+              "text": "Say: 'That's from when I punched him in self-defense.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: You re-confirmed the battery. You just sealed your own arrest warrant.",
+              "next_id": "the_witness_trap"
+            },
+            {
+              "text": "Try to wipe the blood off your shirt.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL: Destruction of evidence. The officer will immediately restrain you.",
+              "next_id": "the_witness_trap"
+            }
+          ]
+        },
+        "the_witness_trap": {
+          "title": "Phase 3: The Witness Bluff",
+          "description": "Another officer walks over. 'We have a bouncer who says you completely blindsided him. Game over. You want to apologize or do this the hard way?'",
+          "choices": [
+            {
+              "text": "Say: 'I want my lawyer.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: Police are allowed to lie about what witnesses say. An apology is an admission of guilt. Invoking counsel stops the interrogation.",
+              "next_id": "the_arrest_abi"
+            },
+            {
+              "text": "Say: 'The bouncer is lying! I have witnesses too!'",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: Arguing facts on the street is pointless. However, identifying that you have defense witnesses is better than confessing.",
+              "next_id": "the_arrest_abi"
+            },
+            {
+              "text": "Say: 'Okay, I'm sorry, I just lost my temper.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: A full, legally admissible confession to an unprovoked Assault and Battery with injuries.",
+              "next_id": "the_arrest_abi"
+            },
+            {
+              "text": "Demand to speak to the bouncer.",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: You have no right to confront witnesses during an active police investigation. This makes you look aggressive.",
+              "next_id": "the_arrest_abi"
+            }
+          ]
+        },
+        "the_arrest_abi": {
+          "title": "Phase 4: The Arrest & EMS",
+          "description": "You are placed under arrest. The officer asks, 'We're calling EMS for him. Do you need an ambulance? Are you injured anywhere?'",
+          "choices": [
+            {
+              "text": "Say: 'Yes, I have injuries that need to be documented and treated.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: If you were in a fight, having EMS document *your* injuries immediately is the strongest foundation for a self-defense claim later in court.",
+              "next_id": "ems_questioning"
+            },
+            {
+              "text": "Say: 'No, I'm fine.'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: If you claim self-defense later but have no documented injuries from the night of the arrest, the jury won't believe you were in danger.",
+              "next_id": "ems_questioning"
+            },
+            {
+              "text": "Say: 'Yeah, my hand hurts from hitting his face.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: Another confession. Never explain *how* you got the injury to the police, just that you need treatment.",
+              "next_id": "ems_questioning"
+            },
+            {
+              "text": "Ignore the question.",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: Remaining silent is generally good, but you waive your right to immediate medical attention which could help your defense.",
+              "next_id": "ems_questioning"
+            }
+          ]
+        },
+        "ems_questioning": {
+          "title": "Phase 5: The Paramedic Interrogation",
+          "description": "Inside the ambulance, the paramedic asks, 'How did you get these bruises?' A police officer is standing right next to the stretcher listening.",
+          "choices": [
+            {
+              "text": "Say: 'I decline to discuss how it happened, I just need treatment for the pain.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: Medical professionals are not bound by Miranda, and police can listen and testify to what you tell EMS. Keep it strictly to symptoms.",
+              "next_id": "station_detective_abi"
+            },
+            {
+              "text": "Tell the paramedic exactly what happened.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: Your statements to EMS are not privileged if a cop is standing there. You just gave a confession.",
+              "next_id": "station_detective_abi"
+            },
+            {
+              "text": "Whisper to the paramedic so the cop can't hear.",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: EMS reports are subpoenaed by the court. Anything written in the medical report about the crime will be used against you.",
+              "next_id": "station_detective_abi"
+            },
+            {
+              "text": "Refuse treatment entirely.",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: You lose the official medical record of your injuries, which hurts your self-defense claim.",
+              "next_id": "station_detective_abi"
+            }
+          ]
+        },
+        "station_detective_abi": {
+          "title": "Phase 6: The Station Mutual Combat Trap",
+          "description": "At the station, a detective says: 'Look, we know it was a mutual fight. Just sign this form saying it was mutual combat, and we'll knock it down to a misdemeanor.'",
+          "choices": [
+            {
+              "text": "Refuse to sign and re-invoke your right to an attorney.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: 'Mutual combat' is not a legal defense to A&B in Massachusetts; it's a confession that you willingly participated in a fight.",
+              "next_id": "bail_abi"
+            },
+            {
+              "text": "Sign the form to avoid felony charges.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: You just signed a confession. Detectives do not have the power to guarantee reduced charges; only the DA does.",
+              "next_id": "bail_abi"
+            },
+            {
+              "text": "Say: 'It wasn't mutual, he attacked me!'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "WAIVER: You are still engaging in the interrogation without a lawyer. Silence is the only safe move.",
+              "next_id": "bail_abi"
+            },
+            {
+              "text": "Ask to read the form first.",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: Reading it does nothing but drag out the interrogation. An immediate refusal is safer.",
+              "next_id": "bail_abi"
+            }
+          ]
+        },
+        "bail_abi": {
+          "title": "Phase 7: The Bail Hearing",
+          "description": "The Bail Commissioner arrives. Because there are severe injuries, they are considering a high cash bail. 'Have you ever had anger management issues or prior assaults?'",
+          "choices": [
+            {
+              "text": "State: 'You have my criminal record. I decline to answer further without my attorney.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: Do not lie, but do not provide character evidence against yourself. Stand firm on your right to counsel for investigatory questions.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Say: 'I get mad sometimes, but I'm working on it.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: You just gave them a reason to hold you as a danger to the public, guaranteeing a high cash bail or a dangerousness hold.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Lie and say: 'No, I'm the most peaceful person ever.'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: If your record shows prior fights, lying to the commissioner destroys your credibility and you will be held.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Refuse to answer any questions at all.",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: You must still provide basic biographical data (name, address, employment) to get bail.",
+              "next_id": "victory"
+            }
+          ]
+        },
+        "victory": {
+          "title": "ENCOUNTER MASTERED",
+          "description": "You survived a severe A&B investigation. By documenting your injuries and remaining silent, you laid the groundwork for a solid self-defense claim.",
+          "choices": []
+        }
+      }
+    },
+    "assault_battery_police_officer": {
+      "id": "assault_battery_police_officer",
+      "title": "Assault & Battery on a Police Officer (No Injuries)",
+      "description": "Handling physical police encounters, resisting the urge to react, and surviving the 'Stop Resisting' trap.",
+      "phases": {
+        "start": {
+          "title": "Phase 1: The Grab",
+          "description": "You are at a crowded event. Police are clearing the street. An officer suddenly grabs you hard by the shoulder from behind and shoves you forward. 'Move it!'",
+          "choices": [
+            {
+              "text": "Keep your hands visible, do not tense up, and keep moving forward.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: Survival is key. Even if the officer's force is unjustified, reacting physically in a crowd control situation guarantees you will be charged with A&B on a PO.",
+              "next_id": "the_reaction_abpo"
+            },
+            {
+              "text": "Turn around and smack his hand off your shoulder.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: This is the textbook definition of Assault and Battery on a Police Officer. You will be violently tackled.",
+              "next_id": "the_reaction_abpo"
+            },
+            {
+              "text": "Tense your shoulder and push back against his hand.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL: Any physical resistance, even just tensing up and pushing back slightly, meets the threshold for A&B on a PO in MA.",
+              "next_id": "the_reaction_abpo"
+            },
+            {
+              "text": "Yell: 'Don't touch me!' and stop walking.",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: Stopping and yelling gives them a reason to escalate force, claiming you are refusing a lawful dispersal order.",
+              "next_id": "the_reaction_abpo"
+            }
+          ]
+        },
+        "the_reaction_abpo": {
+          "title": "Phase 2: The Takedown Trap",
+          "description": "You stumble from the shove, and as you catch your balance, your arm brushes against the officer. He immediately yells: 'He just hit me! Stop resisting!' and grabs your neck.",
+          "choices": [
+            {
+              "text": "Go limp, keep hands open and visible, and loudly state: 'I am not resisting! I am complying!'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: The 'Stop Resisting' yell is often for the bodycam and crowd. Shouting 'I am not resisting' while going limp provides audio evidence for your defense.",
+              "next_id": "the_cuffing_abpo"
+            },
+            {
+              "text": "Try to wrestle his hand off your neck so you can breathe.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "DANGEROUS: Survival instinct, but legally disastrous. Touching their hands during a takedown will result in multiple officers striking you.",
+              "next_id": "the_cuffing_abpo"
+            },
+            {
+              "text": "Yell: 'I didn't hit you, you shoved me!'",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: Arguing while being taken down is less effective than explicitly stating 'I am complying' to protect yourself from further force.",
+              "next_id": "the_cuffing_abpo"
+            },
+            {
+              "text": "Stiffen your body to brace for impact.",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: Stiffening is legally defined as 'active resistance' and justifies the use of strikes and tasers by police.",
+              "next_id": "the_cuffing_abpo"
+            }
+          ]
+        },
+        "the_cuffing_abpo": {
+          "title": "Phase 3: The Cuffing",
+          "description": "Three officers take you to the ground. They are twisting your arm painfully behind your back. 'Give me your arm! Quit fighting!'",
+          "choices": [
+            {
+              "text": "Relax your muscles entirely and let them move your arms.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: Do not pull away, even if it hurts. Pulling away from pain is instinctual but charged as 'Resisting Arrest'. Total compliance saves your life.",
+              "next_id": "the_cruiser_abpo"
+            },
+            {
+              "text": "Pull your arm away because it feels like it's going to break.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "DANGEROUS: If you pull away, they will escalate to batons or tasers, claiming you are actively fighting them.",
+              "next_id": "the_cruiser_abpo"
+            },
+            {
+              "text": "Yell: 'You're breaking my arm!' but keep it tense.",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: Tensing up prevents them from cuffing you. You must go limp.",
+              "next_id": "the_cruiser_abpo"
+            },
+            {
+              "text": "Try to roll over to protect your face.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "DANGEROUS: Rolling over conceals your hands under your body, which police interpret as reaching for a weapon.",
+              "next_id": "the_cruiser_abpo"
+            }
+          ]
+        },
+        "the_cruiser_abpo": {
+          "title": "Phase 4: The Cruiser Ride",
+          "description": "You are handcuffed in the cruiser. The officer driving is the one who shoved you. He looks in the mirror: 'Why do you hate cops so much? You think you can just assault us and get away with it?'",
+          "choices": [
+            {
+              "text": "Remain completely silent.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: The cruiser is heavily recorded. He is trying to bait you into an angry response to justify his use of force. Silence denies him his narrative.",
+              "next_id": "the_apology_trap_abpo"
+            },
+            {
+              "text": "Say: 'I didn't assault you, you assaulted me!'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "WAIVER: You are arguing on a recorded line. It makes you sound agitated and combative, which helps their case.",
+              "next_id": "the_apology_trap_abpo"
+            },
+            {
+              "text": "Swear at the officer and threaten his job.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: Threats can be charged as separate crimes (Intimidation). You are cementing the image of a violent suspect.",
+              "next_id": "the_apology_trap_abpo"
+            },
+            {
+              "text": "Say: 'I want my lawyer.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: A clear invocation of your 6th Amendment rights, legally forcing him to stop the interrogation.",
+              "next_id": "the_apology_trap_abpo"
+            }
+          ]
+        },
+        "the_apology_trap_abpo": {
+          "title": "Phase 5: The Booking Apology Trap",
+          "description": "At the station, the Sergeant says: 'Look, my guy is pretty fired up. If you just apologize to him right now for shoving him, I'll see if we can drop this to a simple Disorderly.'",
+          "choices": [
+            {
+              "text": "State: 'I want my attorney. I will not make any statements.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: Never apologize. An apology is a full legal confession to A&B on a Police Officer. The Sergeant cannot guarantee dropped charges.",
+              "next_id": "the_injury_check_abpo"
+            },
+            {
+              "text": "Say: 'I'm sorry, I just lost my balance.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: You just confessed to making physical contact. They will drop the 'lost balance' part and keep the 'I'm sorry'.",
+              "next_id": "the_injury_check_abpo"
+            },
+            {
+              "text": "Say: 'He should apologize to me!'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: Combative behavior at booking guarantees you won't get bail.",
+              "next_id": "the_injury_check_abpo"
+            },
+            {
+              "text": "Ask: 'Can I get that deal in writing?'",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: They won't put it in writing because they can't. Don't negotiate. Just invoke silence.",
+              "next_id": "the_injury_check_abpo"
+            }
+          ]
+        },
+        "the_injury_check_abpo": {
+          "title": "Phase 6: The Injury Check",
+          "description": "The booking officer asks, 'Do you have any injuries from the arrest?' Your shoulder is in immense pain from the takedown.",
+          "choices": [
+            {
+              "text": "Say: 'Yes, my shoulder is injured and I need medical attention.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: Documenting your injuries immediately is the only way to build a case for police brutality or excessive force later.",
+              "next_id": "bail_abpo"
+            },
+            {
+              "text": "Say: 'No, I'm fine.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: If you sign a form saying you aren't injured, you destroy any future civil rights lawsuit against the department for excessive force.",
+              "next_id": "bail_abpo"
+            },
+            {
+              "text": "Say: 'Your officers tried to break my arm!'",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: Keep it strictly medical. Accusing them directly during booking just creates more hostility.",
+              "next_id": "bail_abpo"
+            },
+            {
+              "text": "Refuse to answer.",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: You lose the opportunity to have the state document their own excessive force.",
+              "next_id": "bail_abpo"
+            }
+          ]
+        },
+        "bail_abpo": {
+          "title": "Phase 7: The Bail Hearing",
+          "description": "The Bail Commissioner is setting bail. 'Assaulting a police officer is a serious public safety issue. Why should I let you out?'",
+          "choices": [
+            {
+              "text": "Provide proof of your steady job, local address, and lack of prior record.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: Counter the 'danger' narrative with hard facts about your stability and ties to the community. Do not discuss the facts of the arrest.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Say: 'Because I didn't do it! The cop lied!'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: The Bail Commissioner assumes the police report is true for the purpose of bail. Arguing facts makes you look unstable.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Refuse to speak.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "DANGEROUS: Refusing to provide mitigating information on a cop-assault charge guarantees you will sit in jail until arraignment.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Say: 'I'll pay whatever, just let me out.'",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: Offering 'whatever' shows you are a flight risk with endless resources. Just stick to your community ties.",
+              "next_id": "victory"
+            }
+          ]
+        },
+        "victory": {
+          "title": "ENCOUNTER MASTERED",
+          "description": "You survived a high-force encounter without giving them the confession they needed to justify it. Your lawyer can now subpoena the bodycams and fight the charge.",
+          "choices": []
+        }
+      }
+    },
+    "disorderly_conduct_other": {
+      "id": "disorderly_conduct_other",
+      "title": "Disorderly Conduct, Other (Protest/Crowd)",
+      "description": "Navigating large crowd arrests, unlawful assembly declarations, and avoiding riot-related felony upgrades.",
+      "phases": {
+        "start": {
+          "title": "Phase 1: The Unlawful Assembly",
+          "description": "You are at a large street protest. Police on loudspeakers announce: 'This is an unlawful assembly. Disperse immediately or you will be arrested for Disorderly Conduct.'",
+          "choices": [
+            {
+              "text": "Link arms with the person next to you and sit down.",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: Civil disobedience is a valid protest tactic, but it guarantees your arrest for Disorderly Conduct and potentially Resisting Arrest.",
+              "next_id": "the_kettle_dco"
+            },
+            {
+              "text": "Walk calmly toward the designated exit routes.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: If you do not wish to be arrested, you must leave when an unlawful assembly is declared. Walking away slowly avoids 'tumultuous' behavior.",
+              "next_id": "the_kettle_dco"
+            },
+            {
+              "text": "Yell at the police: 'We have a right to be here!'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL: Yelling at police during a riot declaration is 'tumultuous behavior', the exact definition of Disorderly Conduct in MA.",
+              "next_id": "the_kettle_dco"
+            },
+            {
+              "text": "Run away as fast as you can.",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: Running in a crowd causes panic and gives police reason to tackle you.",
+              "next_id": "the_kettle_dco"
+            }
+          ]
+        },
+        "the_kettle_dco": {
+          "title": "Phase 2: The Kettle",
+          "description": "Before you can leave, police form a circle around the crowd ('kettling') and begin zip-tying everyone. An officer grabs you. 'You didn't disperse. Hands behind your back.'",
+          "choices": [
+            {
+              "text": "Comply silently and let them zip-tie you.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: Once kettled, arrest is inevitable. Physical compliance prevents the charge from being upgraded from a simple Disorderly to Resisting Arrest.",
+              "next_id": "the_bag_search_dco"
+            },
+            {
+              "text": "Try to push through the police line to escape.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: Pushing a police line is Assault on a Police Officer and can trigger Riot charges.",
+              "next_id": "the_bag_search_dco"
+            },
+            {
+              "text": "Go completely limp so they have to carry you.",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: 'Passive resistance' (going dead weight) is technically Resisting Arrest in MA and will add charges to your record.",
+              "next_id": "the_bag_search_dco"
+            },
+            {
+              "text": "Say: 'I was trying to leave, you blocked me!'",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: While true, arguing on the street during a mass arrest changes nothing. Save it for the judge.",
+              "next_id": "the_bag_search_dco"
+            }
+          ]
+        },
+        "the_bag_search_dco": {
+          "title": "Phase 3: The Search for Riot Gear",
+          "description": "The officer pulls your backpack off. 'We're searching everyone for weapons and spray paint.'",
+          "choices": [
+            {
+              "text": "State loudly for bodycams: 'I do not consent to a search of my bag.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: They will likely search it as an 'inventory search' incident to arrest, but stating non-consent preserves your 4th Amendment rights.",
+              "next_id": "the_transport_dco"
+            },
+            {
+              "text": "Say: 'Go ahead, there's only water in there.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "WAIVER: Voluntary consent ruins any chance of fighting the search later.",
+              "next_id": "the_transport_dco"
+            },
+            {
+              "text": "Try to kick the bag away from the officer.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "DANGEROUS: Physical interference will result in force and further charges.",
+              "next_id": "the_transport_dco"
+            },
+            {
+              "text": "Say: 'You need a warrant!'",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: They actually don't need a warrant for a search incident to a lawful arrest. Just state 'I do not consent.'",
+              "next_id": "the_transport_dco"
+            }
+          ]
+        },
+        "the_transport_dco": {
+          "title": "Phase 4: The Transport Van",
+          "description": "You are loaded into a police van with 10 other protestors. An officer says, 'If someone tells me who the organizer of this mess is, I'll let the rest of you go.'",
+          "choices": [
+            {
+              "text": "Remain completely silent.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: The 'Prisoner's Dilemma'. Police will not let anyone go; they are just fishing for a Conspiracy/Incitement charge. Say nothing.",
+              "next_id": "the_station_dco"
+            },
+            {
+              "text": "Say: 'We have no leader, we are a collective!'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: You just admitted to being part of the organized group that caused the disorder, cementing your guilt.",
+              "next_id": "the_station_dco"
+            },
+            {
+              "text": "Give them the name of the organizer to get released.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: They won't release you, and you just provided evidence for a massive conspiracy case.",
+              "next_id": "the_station_dco"
+            },
+            {
+              "text": "Tell everyone else in the van to shut up.",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: Acting as the leader of the van makes you look like the organizer. Just stay quiet yourself.",
+              "next_id": "the_station_dco"
+            }
+          ]
+        },
+        "the_station_dco": {
+          "title": "Phase 5: The Civil Infraction Offer",
+          "description": "At the station, they are overwhelmed. A supervisor says, 'Sign this Civil Infraction for Disorderly Conduct. Pay a $50 fine and you all walk out right now with no criminal record.'",
+          "choices": [
+            {
+              "text": "Request to speak to a lawyer from a legal defense fund before signing.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: A civil infraction isn't a crime, but signing it is an admission of guilt that could affect security clearances or visas. Always consult counsel.",
+              "next_id": "the_summons_dco"
+            },
+            {
+              "text": "Sign it immediately.",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: It gets you out of jail, but you just waived your right to sue for wrongful arrest if the kettle was illegal.",
+              "next_id": "the_summons_dco"
+            },
+            {
+              "text": "Rip the paper up and demand a trial.",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: Theatrical, and guarantees you spend the weekend in jail waiting for a judge.",
+              "next_id": "the_summons_dco"
+            },
+            {
+              "text": "Argue that the fine should be zero.",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: You can't negotiate fines with the booking officer.",
+              "next_id": "the_summons_dco"
+            }
+          ]
+        },
+        "the_summons_dco": {
+          "title": "Phase 6: The Summons",
+          "description": "Because you won't sign the civil fine, they decide to give you a criminal summons instead of holding you. 'Take this paper, it has your court date.'",
+          "choices": [
+            {
+              "text": "Take the paper, remain silent, and leave.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: A summons is a win. You go home. Your lawyer can get a simple protest-related Disorderly charge dismissed easily in MA.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Refuse to take the paper.",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: Refusing the paper doesn't make the court date disappear. You will miss court and get a warrant for your arrest.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Say: 'I'll see you in court, pig!'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "RISKY: Insulting them on the way out might make them tear up the summons and put you back in a cell.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Ask: 'Do I really have to show up?'",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: Yes. It is a court order. Leave quietly.",
+              "next_id": "victory"
+            }
+          ]
+        },
+        "victory": {
+          "title": "ENCOUNTER MASTERED",
+          "description": "You survived a mass arrest scenario without providing evidence against yourself or your fellow protesters. Your lawyer can now attack the legality of the dispersal order.",
+          "choices": []
+        }
+      }
+    },
+    "operating_after_revocation": {
+      "id": "operating_after_revocation",
+      "title": "Operating After Revocation or Suspension",
+      "description": "Navigating traffic stops with suspended licenses, avoiding the 'knowledge' trap, and handling vehicle inventory searches.",
+      "phases": {
+        "start": {
+          "title": "Phase 1: The Stop",
+          "description": "You are pulled over for a rolling stop. The officer approaches. 'License and registration, please.' You know your license is currently suspended.",
+          "choices": [
+            {
+              "text": "Hand over your suspended license or a state ID and remain silent.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: You must provide identification to police during a traffic stop. Do not confess it is suspended; let them run it.",
+              "next_id": "the_discovery_oas"
+            },
+            {
+              "text": "Say: 'I know my license is suspended, I'm just driving to work.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: A full confession. The crime requires the state to prove you *knew* it was suspended. You just proved it for them.",
+              "next_id": "the_discovery_oas"
+            },
+            {
+              "text": "Lie and say: 'I forgot my wallet at home.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL: Driving without a license on your person is an infraction, but lying to conceal a suspended license can lead to further charges.",
+              "next_id": "the_discovery_oas"
+            },
+            {
+              "text": "Give them a fake name and date of birth.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: Providing a false name to police is a serious crime. They will find out when they run the plates.",
+              "next_id": "the_discovery_oas"
+            }
+          ]
+        },
+        "the_discovery_oas": {
+          "title": "Phase 2: The 'Knowledge' Trap",
+          "description": "The officer returns from the cruiser. 'Your license is revoked. The RMV sent you a letter last month. Did you get that letter?'",
+          "choices": [
+            {
+              "text": "State: 'I invoke my right to remain silent.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: The 'Notice' trap. If they can't prove you received the RMV letter, they can't prove you *knew* you were suspended. Silence protects you.",
+              "next_id": "the_exit_oas"
+            },
+            {
+              "text": "Say: 'Yes, but I needed to buy groceries.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: You admitted to receiving notice and driving anyway. Necessity is almost never a valid legal defense for driving on a suspended license.",
+              "next_id": "the_exit_oas"
+            },
+            {
+              "text": "Say: 'No, I never check my mail.'",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "WAIVER: Willful ignorance is not a defense. You are engaging in the interrogation and giving them statements to pick apart.",
+              "next_id": "the_exit_oas"
+            },
+            {
+              "text": "Say: 'I thought the suspension ended yesterday!'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: You just admitted you knew your license was suspended recently, which is enough to secure a conviction.",
+              "next_id": "the_exit_oas"
+            }
+          ]
+        },
+        "the_exit_oas": {
+          "title": "Phase 3: The Keys and Exit",
+          "description": "The officer says, 'Step out of the car and hand me the keys. You're under arrest for Operating After Suspension.'",
+          "choices": [
+            {
+              "text": "Turn off the car, step out, lock the door behind you, and hand over the keys.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: Comply with the exit order. Locking the door preserves your 4th Amendment rights, forcing them to justify entering the vehicle.",
+              "next_id": "the_inventory_search"
+            },
+            {
+              "text": "Refuse to give them the keys.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "DANGEROUS: Refusing a lawful order during an arrest leads to physical extraction and Resisting Arrest charges.",
+              "next_id": "the_inventory_search"
+            },
+            {
+              "text": "Step out but leave the car running.",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: Leaving the car running gives them easy access to search the interior.",
+              "next_id": "the_inventory_search"
+            },
+            {
+              "text": "Throw the keys into the woods.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL: Destruction of evidence/Interfering with police. A terrible idea.",
+              "next_id": "the_inventory_search"
+            }
+          ]
+        },
+        "the_inventory_search": {
+          "title": "Phase 4: The Inventory Search",
+          "description": "The officer takes your keys to unlock the car. 'Since you can't drive it, we have to tow it. I'm doing an inventory search of the car. Is there anything illegal inside?'",
+          "choices": [
+            {
+              "text": "State: 'I do not consent to any searches. I invoke my right to remain silent.'",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: 'Inventory Searches' are a legal loophole police use to search cars before towing. Stating non-consent allows your lawyer to challenge the policy in court.",
+              "next_id": "the_ride_oas"
+            },
+            {
+              "text": "Say: 'Go ahead, look all you want.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "WAIVER: Voluntary consent. If your passenger dropped drugs under the seat, you are now on the hook for them.",
+              "next_id": "the_ride_oas"
+            },
+            {
+              "text": "Say: 'No, but you can't search it without a warrant!'",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: They don't need a warrant for an inventory tow search. Stick to 'I do not consent.'",
+              "next_id": "the_ride_oas"
+            },
+            {
+              "text": "Say: 'Just a little bit of weed in the glovebox.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: You just gave them probable cause to rip the entire car apart, turning a traffic violation into a drug investigation.",
+              "next_id": "the_ride_oas"
+            }
+          ]
+        },
+        "the_ride_oas": {
+          "title": "Phase 5: The Cruiser Confession",
+          "description": "In the cruiser, the officer tries to chat. 'Man, the RMV is a mess. I bet they suspended you for unpaid tickets, right? It happens to everyone.'",
+          "choices": [
+            {
+              "text": "Maintain your silence and request a lawyer.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: This is an interrogation tactic disguised as empathy. Agreeing with him proves you knew *why* you were suspended, cementing the case.",
+              "next_id": "booking_oas"
+            },
+            {
+              "text": "Say: 'Yeah, I just couldn't afford to pay them right now.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: A full confession to knowing your license was suspended.",
+              "next_id": "booking_oas"
+            },
+            {
+              "text": "Say: 'No, it was for child support.'",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "CRIMINAL WAIVER: Correcting the officer still provides the exact confession he is looking for.",
+              "next_id": "booking_oas"
+            },
+            {
+              "text": "Nod your head in agreement.",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "WAIVER: Non-verbal communication can be entered into the police report as a confession.",
+              "next_id": "booking_oas"
+            }
+          ]
+        },
+        "booking_oas": {
+          "title": "Phase 6: The Booking Form",
+          "description": "At the station, they hand you a booking form. 'Just sign this confirming you were the operator of the vehicle so we can process your bail.'",
+          "choices": [
+            {
+              "text": "Refuse to sign the form.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: 'Operation' is a key element of the crime. Do not sign a document doing the prosecution's job of proving you were the driver.",
+              "next_id": "bail_oas"
+            },
+            {
+              "text": "Sign the form to speed up the process.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: You just provided written proof of operation. The state's case is now locked down.",
+              "next_id": "bail_oas"
+            },
+            {
+              "text": "Sign it but write 'Under Protest'.",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: Your signature is still an admission. Refusal is the only safe option.",
+              "next_id": "bail_oas"
+            },
+            {
+              "text": "Ask if your friend can sign it for you.",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: Nonsensical in a booking environment. Just refuse.",
+              "next_id": "bail_oas"
+            }
+          ]
+        },
+        "bail_oas": {
+          "title": "Phase 7: The Bail Hearing",
+          "description": "The Bail Commissioner asks, 'Do you have a history of driving offenses or failing to appear in court?'",
+          "choices": [
+            {
+              "text": "Answer truthfully based strictly on your record, and provide your address/employment info.",
+              "isCorrect": true,
+              "score": 4,
+              "feedback": "OPTIMAL: OAS is a lower-level offense. Be polite, provide your community ties, and you will likely be released on personal recognizance.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Lie about your driving record.",
+              "isCorrect": false,
+              "score": 1,
+              "feedback": "FATAL MISTAKE: They have your RMV record right in front of them. Lying guarantees cash bail.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Say: 'I always go to court, the system is just rigged.'",
+              "isCorrect": false,
+              "score": 3,
+              "feedback": "SUB-OPTIMAL: Keep your personal opinions out of the bail hearing. Just stick to the facts.",
+              "next_id": "victory"
+            },
+            {
+              "text": "Refuse to speak to the Commissioner.",
+              "isCorrect": false,
+              "score": 2,
+              "feedback": "RISKY: Refusing to provide basic bail info means you stay in a cell until court.",
+              "next_id": "victory"
+            }
+          ]
+        },
+        "victory": {
+          "title": "ENCOUNTER MASTERED",
+          "description": "You survived the stop without giving them the 'knowledge' element. Your lawyer can now fight the RMV's notification process in court.",
+          "choices": []
+        }
+      }
     }
   },
   
@@ -1525,10 +4884,8 @@
         "concerning_crime_percent": 52.57
       },
       "availableModuleIds": [
-        "operating_under_the_influence",
         "possession_class_a",
-        "assault_battery",
-        "possession_wi_distribute_class_b"
+        "assault_battery"
 
       ]
     },
@@ -1546,8 +4903,6 @@
         "concerning_crime_percent": 48.53
       },
       "availableModuleIds": [
-        "sidewalk_stop",
-        "firearm_stop",
         "possession_class_a",
         "assault_battery"
       ]
@@ -1566,10 +4921,8 @@
         "concerning_crime_percent": 49.68
       },
       "availableModuleIds": [
-        "firearm_stop",
-        "assault_battery",
-        "person_disorderly",
-        "possession_class_a"
+        "possession_class_a",
+        "assault_battery"
       ]
     },
     "roslindale": {
@@ -1586,10 +4939,8 @@
         "concerning_crime_percent": 52.34
       },
       "availableModuleIds": [
-        "sidewalk_stop",
-        "person_disorderly",
-        "assault_battery",
-        "firearm_stop"
+        "possession_class_a",
+        "assault_battery"
       ]
     },
     "west_roxbury": {
@@ -1606,7 +4957,8 @@
         "concerning_crime_percent": 48.32
       },
       "availableModuleIds": [
-        "person_disorderly"
+        "person_disorderly",
+        "assault_battery"
       ]
     }
   }
